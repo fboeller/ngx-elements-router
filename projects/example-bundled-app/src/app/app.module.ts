@@ -9,7 +9,6 @@ import { createCustomElement } from '@angular/elements';
   declarations: [EntryComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [EntryComponent],
 })
 export class AppModule {
   constructor(private injector: Injector) {}
@@ -19,5 +18,6 @@ export class AppModule {
       injector: this.injector,
     });
     window.customElements.define('aer-entry', customElement);
+    console.log(`Defined the custom element 'aer-entry'`);
   }
 }

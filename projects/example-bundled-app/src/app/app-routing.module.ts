@@ -1,10 +1,25 @@
+import { LocationStrategy } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NoopLocationStrategy } from 'angular-elements-router';
+import { ChildPageComponent } from './child-page.component';
+import { MainPageComponent } from './main-page.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    component: MainPageComponent,
+  },
+  {
+    path: 'child',
+    component: ChildPageComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  providers: [{ provide: LocationStrategy, useClass: NoopLocationStrategy }],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

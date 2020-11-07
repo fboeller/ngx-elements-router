@@ -15,8 +15,7 @@
     "lib": ["es2018", "dom"],
     "paths": {
       "angular-elements-router": [
-        "dist/angular-elements-router/angular-elements-router",
-        "dist/angular-elements-router"
+        "projects/angular-elements-router/src/public-api"
       ]
     }
   }

@@ -1,5 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AngularElementsRouterModule } from 'angular-elements-router';
 import { MicroFrontendHostComponent } from './micro-frontend-host.component';
 
 const routes: Routes = [
@@ -11,7 +12,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [MicroFrontendHostComponent],
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes), AngularElementsRouterModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MicroFrontendHostModule {}

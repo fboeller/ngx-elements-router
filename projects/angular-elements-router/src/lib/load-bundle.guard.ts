@@ -9,8 +9,10 @@ function isValidBundleIdentifier(
   return (
     bundleIdentifier &&
     typeof bundleIdentifier === 'object' &&
-    'customElementName' in bundleIdentifier &&
-    'bundleUrl' in bundleIdentifier
+    'customElementNames' in bundleIdentifier &&
+    Array.isArray(bundleIdentifier['customElementNames']) &&
+    'bundleUrl' in bundleIdentifier &&
+    typeof bundleIdentifier['bundleUrl'] === 'string'
   );
 }
 

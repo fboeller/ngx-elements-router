@@ -22,7 +22,7 @@ describe('BundleRegistryService', () => {
 
   it('should load a web component that has not been loaded yet', async () => {
     const bundleIdentifier: BundleIdentifier = {
-      customElementName: 'my-element',
+      customElementNames: ['my-element'],
       bundleUrl: 'http://localhost:4200/main.js',
     };
     expect(await service.loadBundle(bundleIdentifier)).toBeTruthy();
@@ -33,7 +33,7 @@ describe('BundleRegistryService', () => {
 
   it('should return the status failed if waiting for a custom element fails', async () => {
     const bundleIdentifier: BundleIdentifier = {
-      customElementName: 'my-element',
+      customElementNames: ['my-element'],
       bundleUrl: 'http://localhost:4200/main.js',
     };
     whenDefinedSpy.mockReturnValue(Promise.reject('Some error'));
@@ -48,11 +48,11 @@ describe('BundleRegistryService', () => {
 
   it('should load multiple web components', async () => {
     const bundleIdentifier1: BundleIdentifier = {
-      customElementName: 'my-element-1',
+      customElementNames: ['my-element-1'],
       bundleUrl: 'http://localhost:4200/main.js',
     };
     const bundleIdentifier2: BundleIdentifier = {
-      customElementName: 'my-element-1',
+      customElementNames: ['my-element-1'],
       bundleUrl: 'http://localhost:4200/main.js',
     };
     expect(await service.loadBundle(bundleIdentifier1)).toBeTruthy();

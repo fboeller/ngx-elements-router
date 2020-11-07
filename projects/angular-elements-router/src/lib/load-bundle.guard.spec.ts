@@ -26,7 +26,7 @@ describe('LoadBundleGuard', () => {
     [{ data: { bundle: null } }],
     [{ data: { bundle: false } }],
     [{ data: { bundle: 0 } }],
-    [{ data: { bundle: { customElementName: 'x' } } }],
+    [{ data: { bundle: { customElementNames: ['x'] } } }],
     [{ data: { bundle: { bundleUrl: 'x' } } }],
   ])('should fail if the route is missing data', async (route) => {
     expect(await guard.canActivate(route as any)).toBeFalsy();
@@ -36,11 +36,11 @@ describe('LoadBundleGuard', () => {
 
   it('should load a bundle and return true', async () => {
     const route = {
-      data: { bundle: { customElementName: 'x', bundleUrl: 'http://localhost:4200/main.js' } },
+      data: { bundle: { customElementNames: ['my-custom-element'], bundleUrl: 'http://localhost:4200/main.js' } },
     };
     expect(await guard.canActivate(route as any)).toBeFalsy();
     expect(serviceSpy).toBeCalledWith({
-      customElementName: 'x',
+      customElementNames: ['my-custom-element'],
       bundleUrl: 'http://localhost:4200/main.js',
     });
     expect(consoleErrorSpy).toBeCalledTimes(0);

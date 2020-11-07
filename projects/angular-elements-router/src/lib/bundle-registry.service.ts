@@ -7,6 +7,15 @@ function triggerLoad(url: string): void {
   document.body.appendChild(script);
 }
 
+async function waitUntilAllLoaded(
+  customElementNames: string[]
+): Promise<boolean> {
+  const isSuccessArray = await Promise.all(
+    customElementNames.map(waitUntilLoaded)
+  );
+  return isSuccessArray.every((isSuccess) => isSuccess);
+}
+
 function waitUntilLoaded(customElementName: string): Promise<boolean> {
   return window.customElements
     .whenDefined(customElementName)
@@ -25,14 +34,14 @@ export class BundleRegistryService {
    */
   async loadBundle({
     bundleUrl,
-    customElementName,
+    customElementNames,
   }: BundleIdentifier): Promise<boolean> {
     if (this.getLoadingState(bundleUrl) !== 'UNKNOWN') {
       return true;
     }
     this.loadingStates[bundleUrl] = 'LOADING';
     triggerLoad(bundleUrl);
-    const isSuccess = await waitUntilLoaded(customElementName);
+    const isSuccess = await waitUntilAllLoaded(customElementNames);
     this.loadingStates[bundleUrl] = isSuccess ? 'LOADED' : 'FAILED';
     return isSuccess;
   }

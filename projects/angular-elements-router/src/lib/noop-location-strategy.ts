@@ -8,7 +8,8 @@ import { Inject, Injectable, Optional } from '@angular/core';
 
 /**
  * Acts as a noop location strategy that does not modify the browser url.
- * Should be used for a RouterModule in a micro frontend such that the RouterModule of the platform is in charge of modifying the browser url.
+ * Should be used for a RouterModule in a micro frontend.
+ * That way, the RouterModule of the platform is in charge of modifying the browser url.
  *
  * ```
  * imports: [
@@ -53,14 +54,14 @@ export class NoopLocationStrategy extends LocationStrategy {
     return internal;
   }
 
-  pushState(_state: any, _title: string, _path: string, _queryParams: string) {}
+  pushState(_state: any, _title: string, _path: string, _queryParams: string): void {}
 
   replaceState(
     _state: any,
     _title: string,
     _path: string,
     _queryParams: string
-  ) {}
+  ): void {}
 
   forward(): void {}
 

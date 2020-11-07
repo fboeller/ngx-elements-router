@@ -39,22 +39,22 @@ export class RoutingDirective implements OnInit, OnDestroy {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.url
       .pipe(map(urlSegmentsToString), takeUntil(this.destroyed$))
       .subscribe((url) => (this.element.nativeElement.route = url));
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroyed$.next();
   }
 
   @HostListener('routeChange', ['$event'])
-  handleRouteChange(event: { detail?: string }) {
+  handleRouteChange(event: { detail?: string }): void {
     this.navigateToUrl(event?.detail);
   }
 
-  navigateToUrl(url: string | undefined) {
+  navigateToUrl(url: string | undefined): void {
     if (url && url.startsWith('/root')) {
       this.router.navigateByUrl(url.substring('/root'.length));
     } else if (url && url.startsWith('/')) {

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 
 /**
- * This component is referenced for web component root routes that shall never be resolved by the web component itself, but by the host embedding the web component.
+ * This component can be used for routes '/root/**' that shall never be resolved by the web component itself.
+ * Instead, the host embedding the web component can resolve these routes.
  */
 @Component({
-  selector: 'lx-no-component',
+  selector: 'aer-no-component',
   template: '',
 })
 export class NoComponent {}

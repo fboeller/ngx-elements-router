@@ -4,7 +4,7 @@ import { BundleRegistryService } from './bundle-registry.service';
 describe('LoadBundleGuard', () => {
   let guard: LoadBundleGuard;
   let serviceSpy: jasmine.Spy;
-  let consoleErrorSpy = jest
+  const consoleErrorSpy = jest
     .spyOn(console, 'error')
     .mockImplementation(() => {});
 

@@ -9,10 +9,8 @@ function isValidBundleIdentifier(
   return (
     bundleIdentifier &&
     typeof bundleIdentifier === 'object' &&
-    'customElementNames' in bundleIdentifier &&
-    Array.isArray(bundleIdentifier['customElementNames']) &&
-    'bundleUrl' in bundleIdentifier &&
-    typeof bundleIdentifier['bundleUrl'] === 'string'
+    bundleIdentifier.hasOwnProperty('customElementNames') &&
+    bundleIdentifier.hasOwnProperty('bundleUrl')
   );
 }
 
@@ -38,7 +36,7 @@ export class LoadBundleGuard implements CanActivate {
   constructor(private bundleRegistryService: BundleRegistryService) {}
 
   canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
-    let bundleIdentifier = route.data.bundle as unknown;
+    const bundleIdentifier = route.data.bundle as unknown;
     if (!isValidBundleIdentifier(bundleIdentifier)) {
       console.error(`
         The LoadBundleGuard is missing information on which bundle to load.

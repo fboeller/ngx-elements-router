@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoadBundleGuard } from 'angular-elements-router';
+import { LoadBundleGuard } from '../../../angular-elements-router/src/lib/load-bundle.guard';
 
 const routes: Routes = [
   {

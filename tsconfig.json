@@ -12,11 +12,6 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "es2020",
-    "lib": ["es2018", "dom"],
-    "paths": {
-      "angular-elements-router": [
-        "projects/angular-elements-router/src/public-api"
-      ]
-    }
+    "lib": ["es2018", "dom"]
   }
 }

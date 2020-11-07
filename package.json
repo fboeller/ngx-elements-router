@@ -1,6 +1,28 @@
 {
   "name": "angular-elements-router",
   "version": "0.0.2",
+  "description": "An Angular module to enable the usage of the router module within Angular projects defining custom elements",
+  "author": "Fabian Böller",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fboeller/angular-elements-router.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fboeller/angular-elements-router/issues"
+  },
+  "keywords": [
+    "angular",
+    "router",
+    "routing",
+    "web-components",
+    "custom-elements",
+    "angular-elements",
+    "micro-frontends"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

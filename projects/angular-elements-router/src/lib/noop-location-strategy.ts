@@ -54,7 +54,12 @@ export class NoopLocationStrategy extends LocationStrategy {
     return internal;
   }
 
-  pushState(_state: any, _title: string, _path: string, _queryParams: string): void {}
+  pushState(
+    _state: any,
+    _title: string,
+    _path: string,
+    _queryParams: string
+  ): void {}
 
   replaceState(
     _state: any,

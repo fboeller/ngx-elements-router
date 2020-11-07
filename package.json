@@ -10,7 +10,6 @@
     "prettier": "npx prettier --write .",
     "prettier-check": "npx prettier --check ."
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~10.2.0",
     "@angular/common": "~10.2.0",

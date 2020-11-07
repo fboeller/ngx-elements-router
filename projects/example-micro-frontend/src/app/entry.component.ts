@@ -2,6 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   OnDestroy,
   Output,
 } from '@angular/core';
@@ -12,11 +13,9 @@ import { Subject } from 'rxjs';
   selector: 'aer-angular-entry',
   templateUrl: './entry.component.html',
 })
-export class EntryComponent implements OnDestroy {
+export class EntryComponent implements OnChanges, OnDestroy {
   private route$ = new Subject<string | undefined>();
-  @Input() set route(route: string | undefined) {
-    this.route$.next(route);
-  }
+  @Input() route?: string;
   @Output() routeChange = new EventEmitter<string>();
 
   private destroyed$ = new Subject<void>();
@@ -31,5 +30,9 @@ export class EntryComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.destroyed$.next();
+  }
+
+  ngOnChanges() {
+    this.route$.next(this.route);
   }
 }

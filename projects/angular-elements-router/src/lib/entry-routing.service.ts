@@ -34,7 +34,6 @@ export class EntryRoutingService {
     incomingRoute$: Observable<string | undefined>,
     destroyed$: Observable<void>
   ): void {
-    console.log('Hi!');
     incomingRoute$.pipe(takeUntil(destroyed$)).subscribe((route) => {
       if (route) {
         this.router.navigateByUrl(route);

@@ -37,28 +37,28 @@
         }
       }
     },
-    "example-bundled-app": {
+    "example-micro-frontend": {
       "projectType": "application",
-      "root": "projects/example-bundled-app",
-      "sourceRoot": "projects/example-bundled-app/src",
+      "root": "projects/example-micro-frontend",
+      "sourceRoot": "projects/example-micro-frontend/src",
       "prefix": "aer",
       "architect": {
         "build": {
           "builder": "ngx-build-plus:build",
           "options": {
             "singleBundle": true,
-            "outputPath": "dist/example-bundled-app",
-            "index": "projects/example-bundled-app/src/index.html",
-            "main": "projects/example-bundled-app/src/main.ts",
-            "polyfills": "projects/example-bundled-app/src/polyfills.ts",
-            "tsConfig": "projects/example-bundled-app/tsconfig.app.json",
+            "outputPath": "dist/example-micro-frontend",
+            "index": "projects/example-micro-frontend/src/index.html",
+            "main": "projects/example-micro-frontend/src/main.ts",
+            "polyfills": "projects/example-micro-frontend/src/polyfills.ts",
+            "tsConfig": "projects/example-micro-frontend/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "projects/example-bundled-app/src/favicon.ico",
-              "projects/example-bundled-app/src/assets"
+              "projects/example-micro-frontend/src/favicon.ico",
+              "projects/example-micro-frontend/src/assets"
             ],
             "styles": [
-              "projects/example-bundled-app/src/styles.css"
+              "projects/example-micro-frontend/src/styles.css"
             ],
             "scripts": []
           },
@@ -66,8 +66,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/example-bundled-app/src/environments/environment.ts",
-                  "with": "projects/example-bundled-app/src/environments/environment.prod.ts"
+                  "replace": "projects/example-micro-frontend/src/environments/environment.ts",
+                  "with": "projects/example-micro-frontend/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -96,18 +96,18 @@
         "serve": {
           "builder": "ngx-build-plus:dev-server",
           "options": {
-            "browserTarget": "example-bundled-app:build"
+            "browserTarget": "example-micro-frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "example-bundled-app:build:production"
+              "browserTarget": "example-micro-frontend:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "example-bundled-app:build"
+            "browserTarget": "example-micro-frontend:build"
           }
         },
         "test": {
@@ -118,9 +118,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/example-bundled-app/tsconfig.app.json",
-              "projects/example-bundled-app/tsconfig.spec.json",
-              "projects/example-bundled-app/e2e/tsconfig.json"
+              "projects/example-micro-frontend/tsconfig.app.json",
+              "projects/example-micro-frontend/tsconfig.spec.json",
+              "projects/example-micro-frontend/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"

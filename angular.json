@@ -60,7 +60,9 @@
             "styles": [
               "projects/example-micro-frontend/src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "projects/angular-elements-router/src/dev-platform.js"
+            ]
           },
           "configurations": {
             "production": {

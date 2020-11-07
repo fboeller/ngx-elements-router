@@ -14,23 +14,34 @@ function waitUntilLoaded(customElementName: string): Promise<boolean> {
     .catch(() => false);
 }
 
+type LoadingState = 'UNKNOWN' | 'LOADING' | 'LOADED' | 'FAILED';
+
 @Injectable({ providedIn: 'root' })
 export class BundleRegistryService {
-  private loadedBundles: string[] = [];
+  private loadingStates: Record<string, LoadingState> = {};
 
   /**
    * Loads the given bundle if not already loaded, registering its custom elements in the browser.
    */
-  loadBundle(bundleIdentifier: BundleIdentifier): Promise<boolean> {
-    if (this.isBundleLoaded(bundleIdentifier.bundleUrl)) {
-      return Promise.resolve(true);
+  async loadBundle({
+    bundleUrl,
+    customElementName,
+  }: BundleIdentifier): Promise<boolean> {
+    if (this.getLoadingState(bundleUrl) !== 'UNKNOWN') {
+      return true;
     }
-    this.loadedBundles = [...this.loadedBundles, bundleIdentifier.bundleUrl];
-    triggerLoad(bundleIdentifier.bundleUrl);
-    return waitUntilLoaded(bundleIdentifier.customElementName);
+    this.loadingStates[bundleUrl] = 'LOADING';
+    triggerLoad(bundleUrl);
+    const isSuccess = await waitUntilLoaded(customElementName);
+    this.loadingStates[bundleUrl] = isSuccess ? 'LOADED' : 'FAILED';
+    return isSuccess;
+  }
+
+  getLoadingState(bundleUrl: string): LoadingState {
+    return this.loadingStates[bundleUrl] || 'UNKNOWN';
   }
 
   isBundleLoaded(bundleUrl: string): boolean {
-    return this.loadedBundles.includes(bundleUrl);
+    return this.getLoadingState(bundleUrl) === 'LOADED';
   }
 }

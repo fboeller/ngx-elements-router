@@ -1,12 +1,8 @@
 import { NgModule } from '@angular/core';
-import { AngularElementsRouterComponent } from './angular-elements-router.component';
-
-
 
 @NgModule({
-  declarations: [AngularElementsRouterComponent],
-  imports: [
-  ],
-  exports: [AngularElementsRouterComponent]
+  declarations: [],
+  imports: [],
+  exports: [],
 })
-export class AngularElementsRouterModule { }
+export class AngularElementsRouterModule {}

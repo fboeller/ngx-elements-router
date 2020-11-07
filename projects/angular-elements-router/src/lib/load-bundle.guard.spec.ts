@@ -20,6 +20,12 @@ describe('LoadBundleGuard', () => {
 
   it.each([
     [{ data: {} }],
+    [{ data: { bundle: [] } }],
+    [{ data: { bundle: {} } }],
+    [{ data: { bundle: undefined } }],
+    [{ data: { bundle: null } }],
+    [{ data: { bundle: false } }],
+    [{ data: { bundle: 0 } }],
     [{ data: { bundle: { customElementName: 'x' } } }],
     [{ data: { bundle: { bundleUrl: 'x' } } }],
   ])('should fail if the route is missing data', async (route) => {

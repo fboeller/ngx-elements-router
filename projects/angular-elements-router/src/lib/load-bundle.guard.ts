@@ -3,6 +3,17 @@ import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { BundleIdentifier } from './bundle-identifier';
 import { BundleRegistryService } from './bundle-registry.service';
 
+function isValidBundleIdentifier(
+  bundleIdentifier: unknown
+): bundleIdentifier is BundleIdentifier {
+  return (
+    bundleIdentifier &&
+    typeof bundleIdentifier === 'object' &&
+    'customElementName' in bundleIdentifier &&
+    'bundleUrl' in bundleIdentifier
+  );
+}
+
 /**
  * Ensures that a bundle is loaded before activating the route.
  *
@@ -25,14 +36,14 @@ export class LoadBundleGuard implements CanActivate {
   constructor(private bundleRegistryService: BundleRegistryService) {}
 
   canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
-    let bundle = route.data.bundle as BundleIdentifier;
-    if (!bundle || !('customElementName' in bundle) || !('bundleUrl' in bundle)) {
+    let bundleIdentifier = route.data.bundle as unknown;
+    if (!isValidBundleIdentifier(bundleIdentifier)) {
       console.error(`
-        The LoadBundleGuard is missing information on which web component to load.
+        The LoadBundleGuard is missing information on which bundle to load.
         Did you forget to provide an object bundle: { customElementName: string; bundleUrl: string; } as data to the route?
       `);
       return Promise.resolve(false);
     }
-    return this.bundleRegistryService.loadBundle(bundle);
+    return this.bundleRegistryService.loadBundle(bundleIdentifier);
   }
 }

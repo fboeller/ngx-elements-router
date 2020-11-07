@@ -9,9 +9,12 @@
     <script src="scripts.js"></script>
   </head>
   <body>
+    <h1>I'm in the dev platform</h1>
+    <button onclick="router.changeRoute('/child')">Go to child page</button>
+    <button onclick="router.changeRoute('/')">Go to main page</button>
     <mf-entry></mf-entry>
     <script>
-      registerRouting("mf-entry", false);
+      const router = registerRouting("mf-entry", false);
     </script>
   </body>
 </html>

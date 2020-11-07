@@ -1,6 +1,6 @@
 {
   "name": "angular-elements-router",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An Angular module to enable the usage of the router module within Angular projects defining custom elements",
   "author": "Fabian Böller",
   "license": "MIT",

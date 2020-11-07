@@ -12,9 +12,9 @@
     <h1>I'm in the dev platform</h1>
     <button onclick="router.changeRoute('/child')">Go to child page</button>
     <button onclick="router.changeRoute('/')">Go to main page</button>
-    <mf-entry></mf-entry>
+    <div id="router-outlet"></div>
     <script>
-      const router = registerRouting("mf-entry", false);
+      const router = registerRouting("/micro-frontend", "mf-entry");
     </script>
   </body>
 </html>

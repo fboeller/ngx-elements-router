@@ -56,6 +56,7 @@
     "codelyzer": "^6.0.0",
     "jest": "^26.6.3",
     "ng-packagr": "^10.1.0",
+    "ngx-build-plus": "^10.1.1",
     "prettier": "^2.1.2",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",

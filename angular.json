@@ -44,8 +44,9 @@
       "prefix": "aer",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:build",
           "options": {
+            "singleBundle": true,
             "outputPath": "dist/example-bundled-app",
             "index": "projects/example-bundled-app/src/index.html",
             "main": "projects/example-bundled-app/src/main.ts",
@@ -70,7 +71,7 @@
                 }
               ],
               "optimization": true,
-              "outputHashing": "all",
+              "outputHashing": "none",
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
@@ -93,7 +94,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "options": {
             "browserTarget": "example-bundled-app:build"
           },

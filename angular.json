@@ -133,7 +133,7 @@
       "projectType": "application",
       "root": "projects/example-platform",
       "sourceRoot": "projects/example-platform/src",
-      "prefix": "aer",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

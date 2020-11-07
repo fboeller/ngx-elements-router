@@ -9,7 +9,7 @@ const routes: Routes = [
     data: {
       bundle: {
         bundleUrl: 'http://localhost:4201/main.js',
-        customElementNames: ['aer-entry'],
+        customElementNames: ['mf-entry'],
       },
     },
     loadChildren: () =>

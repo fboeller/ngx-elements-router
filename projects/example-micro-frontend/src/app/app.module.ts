@@ -17,7 +17,7 @@ export class AppModule {
     const customElement = createCustomElement(EntryComponent, {
       injector: this.injector,
     });
-    window.customElements.define('aer-entry', customElement);
-    console.log(`Defined the custom element 'aer-entry'`);
+    window.customElements.define('mf-entry', customElement);
+    console.log(`Defined the custom element 'mf-entry'`);
   }
 }

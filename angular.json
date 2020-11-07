@@ -41,7 +41,7 @@
       "projectType": "application",
       "root": "projects/example-micro-frontend",
       "sourceRoot": "projects/example-micro-frontend/src",
-      "prefix": "aer",
+      "prefix": "mf",
       "architect": {
         "build": {
           "builder": "ngx-build-plus:build",

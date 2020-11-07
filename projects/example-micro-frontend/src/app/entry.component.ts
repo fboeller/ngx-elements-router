@@ -10,7 +10,7 @@ import { EntryRoutingService } from 'angular-elements-router';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'aer-angular-entry',
+  selector: 'mf-angular-entry',
   templateUrl: './entry.component.html',
 })
 export class EntryComponent implements OnChanges, OnDestroy {

@@ -32,12 +32,11 @@
               "projects/angular-elements-router/tsconfig.lib.json",
               "projects/angular-elements-router/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "angular-elements-router"
 }

@@ -1,9 +1,16 @@
-import { Directive, ElementRef, HostListener, OnDestroy, OnInit } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
-const urlSegmentsToString = (segments: UrlSegment[]) => '/' + segments.map((segment) => segment.path).join('/');
+const urlSegmentsToString = (segments: UrlSegment[]) =>
+  '/' + segments.map((segment) => segment.path).join('/');
 
 /**
  * Enables the routing feature on a custom element.
@@ -21,15 +28,21 @@ const urlSegmentsToString = (segments: UrlSegment[]) => '/' + segments.map((segm
  * ```
  */
 @Directive({
-  selector: '[aerRouting]'
+  selector: '[aerRouting]',
 })
 export class RoutingDirective implements OnInit, OnDestroy {
   private destroyed$ = new Subject<void>();
 
-  constructor(private element: ElementRef, private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private element: ElementRef,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.route.url.pipe(map(urlSegmentsToString), takeUntil(this.destroyed$)).subscribe((url) => (this.element.nativeElement.route = url));
+    this.route.url
+      .pipe(map(urlSegmentsToString), takeUntil(this.destroyed$))
+      .subscribe((url) => (this.element.nativeElement.route = url));
   }
 
   ngOnDestroy() {
@@ -45,9 +58,13 @@ export class RoutingDirective implements OnInit, OnDestroy {
     if (url && url.startsWith('/root')) {
       this.router.navigateByUrl(url.substring('/root'.length));
     } else if (url && url.startsWith('/')) {
-      this.router.navigate(['./' + url.substring('/'.length)], { relativeTo: this.route.parent });
+      this.router.navigate(['./' + url.substring('/'.length)], {
+        relativeTo: this.route.parent,
+      });
     } else {
-      console.warn(`The aerRouting retrieved a route change that does not start with a '/'.`);
+      console.warn(
+        `The aerRouting retrieved a route change that does not start with a '/'.`
+      );
     }
   }
 }

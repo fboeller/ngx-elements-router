@@ -9,14 +9,18 @@ describe('RoutingDirective', () => {
   beforeEach(() => {
     const router: Partial<Router> = {
       navigateByUrl: () => Promise.resolve(true),
-      navigate: () => Promise.resolve(true)
+      navigate: () => Promise.resolve(true),
     };
     const activatedRoute = {
-      parent: 'parent'
+      parent: 'parent',
     };
     navigateByUrlSpy = spyOn(router, 'navigateByUrl');
     navigateSpy = spyOn(router, 'navigate');
-    directive = new RoutingDirective(null as any, router as any, activatedRoute as any);
+    directive = new RoutingDirective(
+      null as any,
+      router as any,
+      activatedRoute as any
+    );
   });
 
   it('navigates relative to the base href if the route is prefixed with /root', () => {

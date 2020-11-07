@@ -36,7 +36,12 @@ describe('LoadBundleGuard', () => {
 
   it('should load a bundle and return true', async () => {
     const route = {
-      data: { bundle: { customElementNames: ['my-custom-element'], bundleUrl: 'http://localhost:4200/main.js' } },
+      data: {
+        bundle: {
+          customElementNames: ['my-custom-element'],
+          bundleUrl: 'http://localhost:4200/main.js',
+        },
+      },
     };
     expect(await guard.canActivate(route as any)).toBeFalsy();
     expect(serviceSpy).toBeCalledWith({

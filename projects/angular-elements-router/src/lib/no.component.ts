@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'lx-no-component',
-  template: ''
+  template: '',
 })
 export class NoComponent {}

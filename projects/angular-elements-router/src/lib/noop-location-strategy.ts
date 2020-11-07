@@ -1,4 +1,9 @@
-import { APP_BASE_HREF, LocationChangeListener, LocationStrategy, PlatformLocation } from '@angular/common';
+import {
+  APP_BASE_HREF,
+  LocationChangeListener,
+  LocationStrategy,
+  PlatformLocation,
+} from '@angular/common';
 import { Inject, Injectable, Optional } from '@angular/core';
 
 /**
@@ -21,11 +26,16 @@ import { Inject, Injectable, Optional } from '@angular/core';
 export class NoopLocationStrategy extends LocationStrategy {
   private readonly baseHref: string;
 
-  constructor(private platformLocation: PlatformLocation, @Optional() @Inject(APP_BASE_HREF) baseHref?: string) {
+  constructor(
+    private platformLocation: PlatformLocation,
+    @Optional() @Inject(APP_BASE_HREF) baseHref?: string
+  ) {
     super();
     this.baseHref = baseHref || this.platformLocation.getBaseHrefFromDOM();
     if (!this.baseHref) {
-      throw new Error(`No base href set. Please provide a value for the APP_BASE_HREF token or add a base element to the document.`);
+      throw new Error(
+        `No base href set. Please provide a value for the APP_BASE_HREF token or add a base element to the document.`
+      );
     }
   }
 
@@ -45,7 +55,12 @@ export class NoopLocationStrategy extends LocationStrategy {
 
   pushState(_state: any, _title: string, _path: string, _queryParams: string) {}
 
-  replaceState(_state: any, _title: string, _path: string, _queryParams: string) {}
+  replaceState(
+    _state: any,
+    _title: string,
+    _path: string,
+    _queryParams: string
+  ) {}
 
   forward(): void {}
 

@@ -11,10 +11,7 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "lib": ["es2018", "dom"],
     "paths": {
       "angular-elements-router": [
         "dist/angular-elements-router/angular-elements-router",

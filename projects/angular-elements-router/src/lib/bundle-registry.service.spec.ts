@@ -41,9 +41,9 @@ describe('BundleRegistryService', () => {
     expect(
       await service.isBundleLoaded(bundleIdentifier.bundleUrl)
     ).toBeFalsy();
-    expect(
-      await service.getLoadingState(bundleIdentifier.bundleUrl)
-    ).toEqual('FAILED');
+    expect(await service.getLoadingState(bundleIdentifier.bundleUrl)).toEqual(
+      'FAILED'
+    );
   });
 
   it('should load multiple web components', async () => {

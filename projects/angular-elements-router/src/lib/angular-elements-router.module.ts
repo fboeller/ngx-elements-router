@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
+import { NoComponent } from './no.component';
+import { RoutingDirective } from './routing.directive';
 
 @NgModule({
-  declarations: [],
+  declarations: [RoutingDirective, NoComponent],
   imports: [],
-  exports: [],
+  exports: [RoutingDirective, NoComponent],
 })
 export class AngularElementsRouterModule {}

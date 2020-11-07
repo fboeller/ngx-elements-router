@@ -128,6 +128,97 @@
           }
         }
       }
+    },
+    "example-platform": {
+      "projectType": "application",
+      "root": "projects/example-platform",
+      "sourceRoot": "projects/example-platform/src",
+      "prefix": "aer",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/example-platform",
+            "index": "projects/example-platform/src/index.html",
+            "main": "projects/example-platform/src/main.ts",
+            "polyfills": "projects/example-platform/src/polyfills.ts",
+            "tsConfig": "projects/example-platform/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/example-platform/src/favicon.ico",
+              "projects/example-platform/src/assets"
+            ],
+            "styles": [
+              "projects/example-platform/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/example-platform/src/environments/environment.ts",
+                  "with": "projects/example-platform/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "example-platform:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "example-platform:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "example-platform:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {}
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/example-platform/tsconfig.app.json",
+              "projects/example-platform/tsconfig.spec.json",
+              "projects/example-platform/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "angular-elements-router"

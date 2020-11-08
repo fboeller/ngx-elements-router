@@ -3,10 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PlatformPageComponent } from './platform-page.component';
+import { PlatformMainPageComponent } from './platform-main-page.component';
+import { PlatformChildPageComponent } from './platform-child-page.component';
 
 @NgModule({
-  declarations: [AppComponent, PlatformPageComponent],
+  declarations: [AppComponent, PlatformMainPageComponent, PlatformChildPageComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],

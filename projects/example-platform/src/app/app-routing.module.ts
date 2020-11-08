@@ -1,9 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoadBundleGuard } from '../../../angular-elements-router/src/lib/load-bundle.guard';
-import { PlatformPageComponent } from './platform-page.component';
+import { PlatformMainPageComponent } from './platform-main-page.component';
+import { PlatformChildPageComponent } from './platform-child-page.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    component: PlatformMainPageComponent,
+  },
+  {
+    path: 'child',
+    component: PlatformChildPageComponent,
+  },
   {
     path: 'micro-frontend',
     canActivate: [LoadBundleGuard],
@@ -14,10 +24,6 @@ const routes: Routes = [
       import('./micro-frontend-host/micro-frontend-host.module').then(
         (m) => m.MicroFrontendHostModule
       ),
-  },
-  {
-    path: 'platform-page',
-    component: PlatformPageComponent,
   },
 ];
 

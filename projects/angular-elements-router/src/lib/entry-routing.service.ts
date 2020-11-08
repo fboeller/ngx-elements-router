@@ -56,7 +56,6 @@ export class EntryRoutingService {
         event instanceof NavigationStart &&
         !this.router.getCurrentNavigation()?.extras.skipLocationChange
       ) {
-        console.log('NavigationStart event url:', event.url);
         outgoingRoute$.next(event.url);
       }
     });

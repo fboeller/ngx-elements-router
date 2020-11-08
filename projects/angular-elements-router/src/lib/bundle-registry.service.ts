@@ -1,26 +1,16 @@
 import { Injectable } from '@angular/core';
-import { BundleIdentifier } from './bundle-identifier';
 
-function triggerLoad(url: string): void {
-  const script = document.createElement('script');
-  script.src = url;
-  document.body.appendChild(script);
-}
-
-async function waitUntilAllLoaded(
-  customElementNames: string[]
-): Promise<boolean> {
-  const isSuccessArray = await Promise.all(
-    customElementNames.map(waitUntilLoaded)
-  );
-  return isSuccessArray.every((isSuccess) => isSuccess);
-}
-
-function waitUntilLoaded(customElementName: string): Promise<boolean> {
-  return window.customElements
-    .whenDefined(customElementName)
-    .then(() => true)
-    .catch(() => false);
+function load(url: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = url;
+    script.onload = () => resolve();
+    script.onerror = () =>
+      reject({
+        error: `Bundle ${url} could not be loaded`,
+      });
+    document.body.appendChild(script);
+  });
 }
 
 type LoadingState = 'UNKNOWN' | 'LOADING' | 'LOADED' | 'FAILED';
@@ -32,16 +22,14 @@ export class BundleRegistryService {
   /**
    * Loads the given bundle if not already loaded, registering its custom elements in the browser.
    */
-  async loadBundle({
-    bundleUrl,
-    customElementNames,
-  }: BundleIdentifier): Promise<boolean> {
+  async loadBundle(bundleUrl: string): Promise<boolean> {
     if (this.getLoadingState(bundleUrl) !== 'UNKNOWN') {
       return true;
     }
     this.loadingStates[bundleUrl] = 'LOADING';
-    triggerLoad(bundleUrl);
-    const isSuccess = await waitUntilAllLoaded(customElementNames);
+    const isSuccess = await load(bundleUrl)
+      .then(() => true)
+      .catch(() => false);
     this.loadingStates[bundleUrl] = isSuccess ? 'LOADED' : 'FAILED';
     return isSuccess;
   }

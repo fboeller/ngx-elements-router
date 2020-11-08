@@ -2,7 +2,6 @@
  * Public API Surface of angular-elements-router
  */
 
-export * from './lib/bundle-identifier';
 export * from './lib/bundle-registry.service';
 export * from './lib/entry-routing.service';
 export * from './lib/noop-location-strategy';

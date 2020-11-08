@@ -20,14 +20,12 @@ describe('LoadBundleGuard', () => {
 
   it.each([
     [{ data: {} }],
-    [{ data: { bundle: [] } }],
-    [{ data: { bundle: {} } }],
-    [{ data: { bundle: undefined } }],
-    [{ data: { bundle: null } }],
-    [{ data: { bundle: false } }],
-    [{ data: { bundle: 0 } }],
-    [{ data: { bundle: { customElementNames: ['x'] } } }],
-    [{ data: { bundle: { bundleUrl: 'x' } } }],
+    [{ data: { bundleUrl: [] } }],
+    [{ data: { bundleUrl: {} } }],
+    [{ data: { bundleUrl: undefined } }],
+    [{ data: { bundleUrl: null } }],
+    [{ data: { bundleUrl: false } }],
+    [{ data: { bundleUrl: 0 } }],
   ])('should fail if the route is missing data', async (route) => {
     expect(await guard.canActivate(route as any)).toBeFalsy();
     expect(serviceSpy).toBeCalledTimes(0);
@@ -37,17 +35,11 @@ describe('LoadBundleGuard', () => {
   it('should load a bundle and return true', async () => {
     const route = {
       data: {
-        bundle: {
-          customElementNames: ['my-custom-element'],
-          bundleUrl: 'http://localhost:4200/main.js',
-        },
+        bundleUrl: 'http://localhost:4200/main.js',
       },
     };
     expect(await guard.canActivate(route as any)).toBeFalsy();
-    expect(serviceSpy).toBeCalledWith({
-      customElementNames: ['my-custom-element'],
-      bundleUrl: 'http://localhost:4200/main.js',
-    });
+    expect(serviceSpy).toBeCalledWith('http://localhost:4200/main.js');
     expect(consoleErrorSpy).toBeCalledTimes(0);
   });
 });

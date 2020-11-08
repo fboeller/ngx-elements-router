@@ -1,6 +1,6 @@
 {
   "name": "angular-elements-router",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "An Angular module to enable the usage of the router module within Angular projects defining custom elements",
   "author": "Fabian Böller",
   "license": "MIT",
@@ -33,10 +33,10 @@
     "prettier-check": "npx prettier --check .",
     "e2e": "ng e2e"
   },
-	"np": {
-		"yarn": false,
-		"contents": "dist/angular-elements-router"
-	},
+  "np": {
+    "yarn": false,
+    "contents": "dist/angular-elements-router"
+  },
   "dependencies": {
     "@angular/common": "~10.2.0",
     "@angular/compiler": "~10.2.0",

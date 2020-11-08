@@ -1,6 +1,6 @@
 # Angular Elements Router
 
-![License](https://img.shields.io/github/license/jyfti/jyfti) ![Build](https://img.shields.io/github/workflow/status/jyfti/jyfti/CI) ![Version](https://img.shields.io/npm/v/@jyfti/cli)
+![License](https://img.shields.io/github/license/fboeller/angular-elements-router) ![Build](https://img.shields.io/github/workflow/status/fboeller/angular-elements-router/CI) ![Version](https://img.shields.io/npm/v/angular-elements-router)
 
 The angular elements router is a libary for using the Angular Router within Angular Elements.
 

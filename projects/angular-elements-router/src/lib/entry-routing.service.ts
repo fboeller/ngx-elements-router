@@ -1,23 +1,25 @@
 import { Injectable } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import {
-  distinctUntilChanged,
-  takeUntil,
-  withLatestFrom,
-} from 'rxjs/operators';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 /**
  * Registers the routing feature on the entry component of a micro frontend.
  *
  * ```
- * export class ExampleComponent {
+ * export class ExampleComponent implements OnChanges, OnDestroy {
  *   @Input() route?: string;
- *   @Observe('route') route$: Observable<string | undefined>;
  *   @Output() routeChange = new EventEmitter<string>();
+ *   route$ = new Subject<string | undefined>;
  *   private destroyed$ = new Subject<void>();
  *   constructor(private entryRoutingService: EntryRoutingService) {
- *     this.entryRoutingService.registerRouting((url) => this.routeChange.emit(url), this.route$, this.destroyed$);
+ *     this.entryRoutingService.registerRouting(this.routeChange, this.route$, this.destroyed$);
+ *   }
+ *   ngOnDestroy() {
+ *     this.destroyed$.next();
+ *   }
+ *   ngOnChanges() {
+ *     this.route$.next(this.route);
  *   }
  * ```
  */

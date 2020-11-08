@@ -4,7 +4,8 @@
  *
  * Note that this function can not be called repeatedly such that all elements retrieve the route changes of each other element.
  *
- * @param tagName The name of the html tag of the custom element, typically something like 'lx-some-thing'
+ * @param base The base url of the micro frontend, typically something like '/micro-frontend'
+ * @param tagName The name of the html tag of the custom element, typically something like 'lx-something'
  */
 function registerRouting(base, tagName) {
   const outlet = document.getElementById("router-outlet");

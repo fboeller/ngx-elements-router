@@ -1,9 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/angular-elements-router",
-  "assets": [
-    "src/dev-platform.js"
-  ],
+  "assets": ["src/dev-platform.js"],
   "lib": {
     "entryFile": "src/public-api.ts"
   }

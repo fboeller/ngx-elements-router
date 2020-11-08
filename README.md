@@ -121,7 +121,7 @@ export class EntryComponent implements OnChanges, OnDestroy {
 
 ### Create a custom element from the entry component
 
-The module in your micro frontend needs to define the custom element in the browser on bootstrap of the module. 
+The module in your micro frontend needs to define the custom element in the browser on bootstrap of the module.
 
 ```typescript
 import { EntryComponent } from "./entry.component";

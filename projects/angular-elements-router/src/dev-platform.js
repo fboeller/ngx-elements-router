@@ -25,7 +25,7 @@ function registerRouting(base, tagName) {
 
 function changeRoute(base, route, outlet, tagName) {
   if (route.startsWith("/root")) {
-    window.history.pushState("", "", route.substring("/root".length) || '/');
+    window.history.pushState("", "", route.substring("/root".length) || "/");
     if (outlet.hasChildNodes()) {
       const element = outlet.childNodes[0];
       element.setAttribute("route", "/");

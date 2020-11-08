@@ -7,7 +7,11 @@ import { PlatformMainPageComponent } from './platform-main-page.component';
 import { PlatformChildPageComponent } from './platform-child-page.component';
 
 @NgModule({
-  declarations: [AppComponent, PlatformMainPageComponent, PlatformChildPageComponent],
+  declarations: [
+    AppComponent,
+    PlatformMainPageComponent,
+    PlatformChildPageComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],

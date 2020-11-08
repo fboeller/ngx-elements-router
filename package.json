@@ -33,6 +33,10 @@
     "prettier-check": "npx prettier --check .",
     "e2e": "ng e2e"
   },
+	"np": {
+		"yarn": false,
+		"contents": "dist/angular-elements-router"
+	},
   "dependencies": {
     "@angular/common": "~10.2.0",
     "@angular/compiler": "~10.2.0",

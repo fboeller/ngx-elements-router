@@ -47,6 +47,7 @@
           "builder": "ngx-build-plus:build",
           "options": {
             "singleBundle": true,
+            "outputHashing": "none",
             "outputPath": "dist/example-micro-frontend",
             "index": "projects/example-micro-frontend/src/index.html",
             "main": "projects/example-micro-frontend/src/main.ts",
@@ -73,7 +74,6 @@
                 }
               ],
               "optimization": true,
-              "outputHashing": "none",
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,

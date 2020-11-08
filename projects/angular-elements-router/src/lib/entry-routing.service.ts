@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil, withLatestFrom } from 'rxjs/operators';
+import {
+  distinctUntilChanged,
+  takeUntil,
+  withLatestFrom,
+} from 'rxjs/operators';
 
 /**
  * Registers the routing feature on the entry component of a micro frontend.
@@ -27,31 +31,34 @@ export class EntryRoutingService {
     destroyed$: Observable<void>
   ): void {
     this.registerIncomingRouting(incomingRoute$, destroyed$);
-    this.registerOutgoingRouting(outgoingRoute$, incomingRoute$, destroyed$);
+    this.registerOutgoingRouting(outgoingRoute$, destroyed$);
   }
 
   registerIncomingRouting(
     incomingRoute$: Observable<string | undefined>,
     destroyed$: Observable<void>
   ): void {
-    incomingRoute$.pipe(takeUntil(destroyed$)).subscribe((route) => {
-      if (route) {
-        this.router.navigateByUrl(route);
-      }
-    });
+    incomingRoute$
+      .pipe(distinctUntilChanged(), takeUntil(destroyed$))
+      .subscribe((route) => {
+        if (route) {
+          this.router.navigateByUrl(route, { skipLocationChange: true });
+        }
+      });
   }
 
   registerOutgoingRouting(
     outgoingRoute$: Subject<string>,
-    incomingRoute$: Observable<string | undefined>,
     destroyed$: Observable<void>
   ): void {
-    this.router.events
-      .pipe(withLatestFrom(incomingRoute$), takeUntil(destroyed$))
-      .subscribe(([event, route]) => {
-        if (event instanceof NavigationStart && route !== event.url) {
-          outgoingRoute$.next(event.url);
-        }
-      });
+    this.router.events.pipe(takeUntil(destroyed$)).subscribe((event) => {
+      if (
+        event instanceof NavigationStart &&
+        !this.router.getCurrentNavigation()?.extras.skipLocationChange
+      ) {
+        console.log('NavigationStart event url:', event.url);
+        outgoingRoute$.next(event.url);
+      }
+    });
   }
 }

@@ -11,6 +11,7 @@ function registerRouting(base, tagName) {
   const element = document.createElement(tagName);
   element.addEventListener("routeChange", (event) => {
     const route = event.detail;
+    console.log("routeChange:", route);
     changeRoute(base, route, outlet, element);
   });
   if (window.location.pathname.startsWith(base)) {
@@ -28,16 +29,18 @@ function registerRouting(base, tagName) {
 }
 
 function changeRoute(base, route, outlet, element) {
+  console.log("changeRoute:", route);
   if (route.startsWith("/root")) {
+    window.history.pushState("", "", route.substring("/root".length));
+    element.setAttribute("route", "/");
     if (outlet.hasChildNodes()) {
       outlet.removeChild(element);
     }
-    window.history.pushState("", "", route.substring("/root".length));
   } else {
+    window.history.pushState("", "", base + route);
+    element.setAttribute("route", route);
     if (!outlet.hasChildNodes()) {
       outlet.appendChild(element);
     }
-    window.history.pushState("", "", base + route);
-    element.setAttribute("route", route);
   }
 }

@@ -112,10 +112,6 @@
             "browserTarget": "example-micro-frontend:build"
           }
         },
-        "test": {
-          "builder": "@angular-builders/jest:run",
-          "options": {}
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
@@ -202,10 +198,6 @@
           "options": {
             "browserTarget": "example-platform:build"
           }
-        },
-        "test": {
-          "builder": "@angular-builders/jest:run",
-          "options": {}
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",

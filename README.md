@@ -19,7 +19,7 @@ $ npm install --save angular-elements-router
 ## Prerequisites
 
 You have an Angular application that acts as a [platform](./projects/example-platform) and an Angular application that acts as a [micro frontend](./projects/example-micro-frontend).
-A build of the micro frontend results in a single building that registers custom elements on loading.
+A build of the micro frontend results in a single build that registers custom elements on loading.
 
 ## Usage
 

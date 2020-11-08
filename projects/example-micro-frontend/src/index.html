@@ -10,8 +10,18 @@
   </head>
   <body>
     <h1>The dev platform</h1>
-    <button onclick="router.changeRoute('/child')">Go to child page</button>
-    <button onclick="router.changeRoute('/')">Go to main page</button>
+    <button onclick="router.changeRoute('/root')">
+      Go to platform main page
+    </button>
+    <button onclick="router.changeRoute('/root/child')">
+      Go to platform child page
+    </button>
+    <button onclick="router.changeRoute('/')">
+      Go to micro frontend main page
+    </button>
+    <button onclick="router.changeRoute('/child')">
+      Go to micro frontend child page
+    </button>
     <div id="router-outlet"></div>
     <script>
       const router = registerRouting("/micro-frontend", "mf-entry");

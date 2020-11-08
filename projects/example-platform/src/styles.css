@@ -1,4 +1,4 @@
-a {
+a, button {
   background-color: #008cba;
   border: none;
   color: white;
@@ -10,10 +10,10 @@ a {
   margin-right: 10px;
 }
 
-a:hover {
+a:hover, button:hover {
   background-color: #017ea8;
 }
 
-a:active {
+a:active, button:active {
   background-color: #00678a;
 }

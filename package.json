@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "prettier": "npx prettier --write .",
     "prettier-check": "npx prettier --check .",
-    "build-lib": "ng build angular-elements-router --prod",
+    "build-lib": "ng build angular-elements-router --prod && cp ./README.md ./dist/angular-elements-router/ && cp ./LICENSE ./dist/angular-elements-router/",
     "npm-pack": "cd dist/angular-elements-router && npm pack && cd ../..",
     "package": "npm run build-lib && npm run npm-pack"
   },

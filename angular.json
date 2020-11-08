@@ -58,12 +58,8 @@
               "projects/example-micro-frontend/src/favicon.ico",
               "projects/example-micro-frontend/src/assets"
             ],
-            "styles": [
-              "projects/example-micro-frontend/src/styles.css"
-            ],
-            "scripts": [
-              "projects/angular-elements-router/src/dev-platform.js"
-            ]
+            "styles": ["projects/example-micro-frontend/src/styles.css"],
+            "scripts": ["projects/angular-elements-router/src/dev-platform.js"]
           },
           "configurations": {
             "production": {
@@ -115,14 +111,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "projects/example-micro-frontend/tsconfig.app.json",
-              "projects/example-micro-frontend/tsconfig.spec.json",
-              "projects/example-micro-frontend/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["projects/example-micro-frontend/tsconfig.app.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -146,9 +136,7 @@
               "projects/example-platform/src/favicon.ico",
               "projects/example-platform/src/assets"
             ],
-            "styles": [
-              "projects/example-platform/src/styles.css"
-            ],
+            "styles": ["projects/example-platform/src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -202,14 +190,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "projects/example-platform/tsconfig.app.json",
-              "projects/example-platform/tsconfig.spec.json",
-              "projects/example-platform/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["projects/example-platform/tsconfig.app.json"],
+            "exclude": ["**/node_modules/**"]
           }
         }
       }

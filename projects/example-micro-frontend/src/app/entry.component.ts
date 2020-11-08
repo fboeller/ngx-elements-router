@@ -35,11 +35,11 @@ export class EntryComponent implements OnChanges, OnDestroy {
     );
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroyed$.next();
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     this.route$.next(this.route);
   }
 }

@@ -9,9 +9,15 @@
     "lint": "ng lint",
     "prettier": "npx prettier --write .",
     "prettier-check": "npx prettier --check .",
+    "check": "npm run lint && npm run test && npm run prettier-check",
     "build-lib": "ng build angular-elements-router --prod && cp ./README.md ./dist/angular-elements-router/ && cp ./LICENSE ./dist/angular-elements-router/",
     "npm-pack": "cd dist/angular-elements-router && npm pack && cd ../..",
     "package": "npm run build-lib && npm run npm-pack"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run check"
+    }
   },
   "dependencies": {
     "@angular/common": "~10.2.0",
@@ -34,6 +40,7 @@
     "@types/jest": "^26.0.15",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "husky": "^4.3.0",
     "jest": "^26.6.3",
     "ng-packagr": "^10.1.0",
     "ngx-build-plus": "^10.1.1",

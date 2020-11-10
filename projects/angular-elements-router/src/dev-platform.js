@@ -9,10 +9,10 @@
  */
 function registerRouting(base, tagName) {
   const outlet = document.getElementById("router-outlet");
-  const element = document.createElement(tagName);
-  addRoutingToElement(base, outlet, element);
   const route = window.location.pathname;
   if (route.startsWith(base)) {
+    const element = document.createElement(tagName);
+    addRoutingToElement(base, outlet, element);
     element.setAttribute("route", route.substring(base.length));
     outlet.appendChild(element);
   }

@@ -4,4 +4,4 @@ export * from './lib/noop-location-strategy';
 export * from './lib/no.component';
 export * from './lib/load-bundle.guard';
 export * from './lib/routing.directive';
-export * from './lib/angular-elements-router.module';
+export * from './lib/elements-router.module';

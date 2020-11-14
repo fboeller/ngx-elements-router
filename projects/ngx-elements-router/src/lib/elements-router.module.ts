@@ -7,4 +7,4 @@ import { RoutingDirective } from './routing.directive';
   imports: [],
   exports: [RoutingDirective, NoComponent],
 })
-export class AngularElementsRouterModule {}
+export class ElementsRouterModule {}

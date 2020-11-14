@@ -6,7 +6,7 @@ import {
   OnDestroy,
   Output,
 } from '@angular/core';
-import { EntryRoutingService } from '../../../angular-elements-router/src/lib/entry-routing.service';
+import { EntryRoutingService } from '../../../ngx-elements-router/src/lib/entry-routing.service';
 import { Subject } from 'rxjs';
 
 @Component({

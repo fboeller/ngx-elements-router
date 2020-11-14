@@ -1,5 +1,5 @@
 {
-  "name": "angular-elements-router",
+  "name": "ngx-elements-router",
   "version": "0.0.7",
   "description": "A libary to enable the usage of the router module within Angular projects defining custom elements",
   "author": "Fabian Böller",
@@ -10,10 +10,10 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fboeller/angular-elements-router.git"
+    "url": "git+https://github.com/fboeller/ngx-elements-router.git"
   },
   "bugs": {
-    "url": "https://github.com/fboeller/angular-elements-router/issues"
+    "url": "https://github.com/fboeller/ngx-elements-router/issues"
   },
   "keywords": [
     "angular",
@@ -26,7 +26,7 @@
   ],
   "np": {
     "yarn": false,
-    "contents": "dist/angular-elements-router"
+    "contents": "dist/ngx-elements-router"
   },
   "peerDependencies": {
     "@angular/common": "^10.2.0",

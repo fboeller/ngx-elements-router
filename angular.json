@@ -3,21 +3,21 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-elements-router": {
+    "ngx-elements-router": {
       "projectType": "library",
-      "root": "projects/angular-elements-router",
-      "sourceRoot": "projects/angular-elements-router/src",
+      "root": "projects/ngx-elements-router",
+      "sourceRoot": "projects/ngx-elements-router/src",
       "prefix": "aer",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/angular-elements-router/tsconfig.lib.json",
-            "project": "projects/angular-elements-router/ng-package.json"
+            "tsConfig": "projects/ngx-elements-router/tsconfig.lib.json",
+            "project": "projects/ngx-elements-router/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/angular-elements-router/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ngx-elements-router/tsconfig.lib.prod.json"
             }
           }
         },
@@ -29,8 +29,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/angular-elements-router/tsconfig.lib.json",
-              "projects/angular-elements-router/tsconfig.spec.json"
+              "projects/ngx-elements-router/tsconfig.lib.json",
+              "projects/ngx-elements-router/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**"]
           }
@@ -59,7 +59,7 @@
               "projects/example-micro-frontend/src/assets"
             ],
             "styles": ["projects/example-micro-frontend/src/styles.css"],
-            "scripts": ["projects/angular-elements-router/src/dev-platform.js"]
+            "scripts": ["projects/ngx-elements-router/src/dev-platform.js"]
           },
           "configurations": {
             "production": {
@@ -197,5 +197,5 @@
       }
     }
   },
-  "defaultProject": "angular-elements-router"
+  "defaultProject": "ngx-elements-router"
 }

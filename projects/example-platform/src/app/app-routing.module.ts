@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoadBundleGuard } from '../../../angular-elements-router/src/lib/load-bundle.guard';
+import { LoadBundleGuard } from '../../../ngx-elements-router/src/lib/load-bundle.guard';
 import { PlatformMainPageComponent } from './platform-main-page.component';
 import { PlatformChildPageComponent } from './platform-child-page.component';
 

@@ -1,6 +1,6 @@
 # Angular Elements Router
 
-![License](https://img.shields.io/github/license/fboeller/angular-elements-router) ![Build](https://img.shields.io/github/workflow/status/fboeller/angular-elements-router/CI) ![Version](https://img.shields.io/npm/v/angular-elements-router)
+![License](https://img.shields.io/github/license/fboeller/ngx-elements-router) ![Build](https://img.shields.io/github/workflow/status/fboeller/ngx-elements-router/CI) ![Version](https://img.shields.io/npm/v/ngx-elements-router)
 
 The angular elements router is a libary for using the Angular Router within Angular Elements.
 
@@ -13,7 +13,7 @@ The angular elements router is a libary for using the Angular Router within Angu
 ## Installation
 
 ```
-$ npm install --save angular-elements-router
+$ npm install --save ngx-elements-router
 ```
 
 ## Prerequisites
@@ -46,7 +46,7 @@ Use the schema `CUSTOM_ELEMENTS_SCHEMA` to make Angular accept the custom elemen
 Use the path `**` to pass all sub paths to the custom element.
 
 ```typescript
-import { AngularElementsRouterModule } from "angular-elements-router";
+import { AngularElementsRouterModule } from "ngx-elements-router";
 import { MicroFrontendHostComponent } from "./micro-frontend-host.component";
 
 const routes: Routes = [
@@ -70,7 +70,7 @@ Choose a route under which your micro frontend should be loaded.
 Use the `LoadBundleGuard` to load the bundle of your micro frontend on the first activation of the route.
 
 ```typescript
-import { LoadBundleGuard } from "angular-elements-router";
+import { LoadBundleGuard } from "ngx-elements-router";
 
 const routes: Routes = [
   {
@@ -93,7 +93,7 @@ Use the `EntryRoutingService` in the Angular component representing the custom e
 This way, route changes are passed to the Angular router in the micro frontend and in the other direction to the platform.
 
 ```typescript
-import { EntryRoutingService } from 'angular-elements-router';
+import { EntryRoutingService } from 'ngx-elements-router';
 
 @Component({
   selector: 'mf-angular-entry',
@@ -150,7 +150,7 @@ To resolve the ambiguity of '/' within the micro frontend, you can reserve `/roo
 This way, you can navigate to links outside of the micro frontend from within the micro frontend.
 
 ```typescript
-import { NoComponent } from "angular-elements-router";
+import { NoComponent } from "ngx-elements-router";
 
 const routes: Routes = [
   { path: "root", children: [{ path: "**", component: NoComponent }] },
@@ -164,7 +164,7 @@ By default, the Angular router within the micro frontend tries to update the bro
 Use the `NoopLocationStrategy` to prevent this, such that the platform has the only access.
 
 ```typescript
-import { NoopLocationStrategy } from "angular-elements-router";
+import { NoopLocationStrategy } from "ngx-elements-router";
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
@@ -190,7 +190,7 @@ To use it, include the `dev-platform.js` in the scripts of your micro frontend i
     "outputHashing": "none",
     ...,
     "scripts": [
-      "node_modules/angular-elements-router/src/dev-platform.js"
+      "node_modules/ngx-elements-router/src/dev-platform.js"
     ]
   },
 }

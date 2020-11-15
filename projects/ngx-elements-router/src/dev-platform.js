@@ -18,21 +18,28 @@ function registerRouting(base, tagName) {
   }
   return {
     changeRoute(route) {
+      pushState(base, route);
       changeRoute(base, route, outlet, tagName);
     },
   };
 }
 
-function changeRoute(base, route, outlet, tagName) {
+function pushState(base, route) {
   if (route.startsWith("/root")) {
     window.history.pushState("", "", route.substring("/root".length) || "/");
+  } else {
+    window.history.pushState("", "", base + route);
+  }
+}
+
+function changeRoute(base, route, outlet, tagName) {
+  if (route.startsWith("/root")) {
     if (outlet.hasChildNodes()) {
       const element = outlet.childNodes[0];
       element.setAttribute("route", "/");
       outlet.removeChild(element);
     }
   } else {
-    window.history.pushState("", "", base + route);
     if (!outlet.hasChildNodes()) {
       const element = document.createElement(tagName);
       addRoutingToElement(base, outlet, element);
@@ -45,6 +52,7 @@ function changeRoute(base, route, outlet, tagName) {
 function addRoutingToElement(base, outlet, element) {
   element.addEventListener("routeChange", (event) => {
     const route = event.detail;
+    pushState(base, route);
     changeRoute(base, route, outlet, element);
   });
 }

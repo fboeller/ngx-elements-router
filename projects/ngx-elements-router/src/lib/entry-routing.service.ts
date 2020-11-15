@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
-import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 /**
  * Registers the routing feature on the entry component of a micro frontend.
@@ -29,31 +29,25 @@ export class EntryRoutingService {
 
   registerRouting(
     outgoingRoute$: Subject<string>,
-    incomingRoute$: Observable<string | undefined>,
-    destroyed$: Observable<void>
-  ): void {
-    this.registerIncomingRouting(incomingRoute$, destroyed$);
-    this.registerOutgoingRouting(outgoingRoute$, destroyed$);
+    incomingRoute$: Observable<string | undefined>
+  ): Subscription {
+    const inSubscription = this.registerIncomingRouting(incomingRoute$);
+    const outSubscription = this.registerOutgoingRouting(outgoingRoute$);
+    return inSubscription.add(outSubscription);
   }
 
   registerIncomingRouting(
-    incomingRoute$: Observable<string | undefined>,
-    destroyed$: Observable<void>
-  ): void {
-    incomingRoute$
-      .pipe(distinctUntilChanged(), takeUntil(destroyed$))
-      .subscribe((route) => {
-        if (route) {
-          this.router.navigateByUrl(route, { skipLocationChange: true });
-        }
-      });
+    incomingRoute$: Observable<string | undefined>
+  ): Subscription {
+    return incomingRoute$.pipe(distinctUntilChanged()).subscribe((route) => {
+      if (route) {
+        this.router.navigateByUrl(route, { skipLocationChange: true });
+      }
+    });
   }
 
-  registerOutgoingRouting(
-    outgoingRoute$: Subject<string>,
-    destroyed$: Observable<void>
-  ): void {
-    this.router.events.pipe(takeUntil(destroyed$)).subscribe((event) => {
+  registerOutgoingRouting(outgoingRoute$: Subject<string>): Subscription {
+    return this.router.events.subscribe((event) => {
       if (
         event instanceof NavigationStart &&
         !this.router.getCurrentNavigation()?.extras.skipLocationChange

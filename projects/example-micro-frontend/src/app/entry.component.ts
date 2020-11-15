@@ -7,7 +7,7 @@ import {
   Output,
 } from '@angular/core';
 import { EntryRoutingService } from '../../../ngx-elements-router/src/lib/entry-routing.service';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'mf-angular-entry',
@@ -25,18 +25,17 @@ export class EntryComponent implements OnChanges, OnDestroy {
   @Input() route?: string;
   @Output() routeChange = new EventEmitter<string>();
 
-  private destroyed$ = new Subject<void>();
+  private readonly subscription: Subscription;
 
   constructor(private entryRoutingService: EntryRoutingService) {
-    this.entryRoutingService.registerRouting(
+    this.subscription = this.entryRoutingService.registerRouting(
       this.routeChange,
-      this.route$,
-      this.destroyed$
+      this.route$
     );
   }
 
   ngOnDestroy(): void {
-    this.destroyed$.next();
+    this.subscription.unsubscribe();
   }
 
   ngOnChanges(): void {

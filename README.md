@@ -104,14 +104,18 @@ export class EntryComponent implements OnChanges, OnDestroy {
   @Output() routeChange = new EventEmitter<string>();
 
   route$ = new Subject<string | undefined>;
-  private destroyed$ = new Subject<void>();
+
+  private readonly subscription: Subscription;
 
   constructor(private entryRoutingService: EntryRoutingService) {
-    this.entryRoutingService.registerRouting(this.routeChange, this.route$, this.destroyed$);
+    this.subscription = this.entryRoutingService.registerRouting(
+      this.routeChange,
+      this.route$
+    );
   }
 
-  ngOnDestroy() {
-    this.destroyed$.next();
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   ngOnChanges() {

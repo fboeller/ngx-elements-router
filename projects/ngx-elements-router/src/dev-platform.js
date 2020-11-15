@@ -25,11 +25,10 @@ function registerRouting(base, tagName) {
 }
 
 function pushState(base, route) {
-  if (route.startsWith("/root")) {
-    window.history.pushState("", "", route.substring("/root".length) || "/");
-  } else {
-    window.history.pushState("", "", base + route);
-  }
+  const url = route.startsWith("/root")
+    ? route.substring("/root".length) || "/"
+    : base + route;
+  window.history.pushState("", "", url);
 }
 
 function adaptOutlet(base, route, outlet, tagName) {

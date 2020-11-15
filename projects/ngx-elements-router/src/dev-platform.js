@@ -10,6 +10,15 @@
 function registerRouting(base, tagName) {
   const outlet = document.getElementById("router-outlet");
   const route = window.location.pathname;
+  window.onpopstate = () => {
+    const route = window.location.pathname;
+    adaptOutlet(
+      base,
+      route.startsWith(base) ? route.substring(base.length) : "/root" + route,
+      outlet,
+      tagName
+    );
+  };
   if (route.startsWith(base)) {
     const element = document.createElement(tagName);
     addRoutingToElement(base, outlet, element);

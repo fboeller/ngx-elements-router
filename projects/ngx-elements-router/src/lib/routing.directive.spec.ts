@@ -3,8 +3,8 @@ import { RoutingDirective } from './routing.directive';
 
 describe('RoutingDirective', () => {
   let directive: RoutingDirective;
-  let navigateByUrlSpy: jasmine.Spy;
-  let navigateSpy: jasmine.Spy;
+  let navigateByUrlSpy: jest.SpyInstance;
+  let navigateSpy: jest.SpyInstance;
 
   beforeEach(() => {
     const router: Partial<Router> = {
@@ -14,8 +14,8 @@ describe('RoutingDirective', () => {
     const activatedRoute = {
       parent: 'parent',
     };
-    navigateByUrlSpy = spyOn(router, 'navigateByUrl');
-    navigateSpy = spyOn(router, 'navigate');
+    navigateByUrlSpy = jest.spyOn(router, 'navigateByUrl');
+    navigateSpy = jest.spyOn(router, 'navigate');
     directive = new RoutingDirective(
       null as any,
       router as any,

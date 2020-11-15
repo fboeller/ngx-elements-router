@@ -3,15 +3,17 @@ import { BundleRegistryService } from './bundle-registry.service';
 
 describe('LoadBundleGuard', () => {
   let guard: LoadBundleGuard;
-  let serviceSpy: jasmine.Spy;
+  let serviceSpy: jest.SpyInstance;
   const consoleErrorSpy = jest
     .spyOn(console, 'error')
     .mockImplementation(() => {});
 
   beforeEach(() => {
-    const service = new BundleRegistryService();
-    guard = new LoadBundleGuard(service);
-    serviceSpy = spyOn(service, 'loadBundle');
+    const service: Partial<BundleRegistryService> = {
+      loadBundle: () => Promise.resolve(true),
+    };
+    guard = new LoadBundleGuard(service as BundleRegistryService);
+    serviceSpy = jest.spyOn(service, 'loadBundle');
   });
 
   afterEach(() => {
@@ -38,7 +40,7 @@ describe('LoadBundleGuard', () => {
         bundleUrl: 'http://localhost:4200/main.js',
       },
     };
-    expect(await guard.canActivate(route as any)).toBeFalsy();
+    expect(await guard.canActivate(route as any)).toBeTruthy();
     expect(serviceSpy).toBeCalledWith('http://localhost:4200/main.js');
     expect(consoleErrorSpy).toBeCalledTimes(0);
   });

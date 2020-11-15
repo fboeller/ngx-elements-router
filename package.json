@@ -32,7 +32,7 @@
       "<rootDir>/projects/ngx-elements-router/src/**/*.{ts,js}"
     ],
     "transform": {
-      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+      ".(ts|tsx)": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "clearMocks": true,

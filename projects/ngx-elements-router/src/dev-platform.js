@@ -9,20 +9,15 @@
  */
 function registerRouting(base, tagName) {
   const outlet = document.getElementById("router-outlet");
-  const route = window.location.pathname;
   window.onpopstate = () => {
     const route = window.location.pathname;
-    adaptOutlet(
-      base,
-      route.startsWith(base) ? route.substring(base.length) : "/root" + route,
-      outlet,
-      tagName
-    );
+    adaptOutlet(base, toInternalRoute(base, route), outlet, tagName);
   };
+  const route = window.location.pathname;
   if (route.startsWith(base)) {
     const element = document.createElement(tagName);
     addRoutingToElement(base, outlet, element);
-    element.setAttribute("route", route.substring(base.length));
+    element.setAttribute("route", toInternalRoute(base, route));
     outlet.appendChild(element);
   }
   return {
@@ -33,11 +28,20 @@ function registerRouting(base, tagName) {
   };
 }
 
-function pushState(base, route) {
-  const url = route.startsWith("/root")
+function toInternalRoute(base, route) {
+  return route.startsWith(base)
+    ? route.substring(base.length)
+    : "/root" + route;
+}
+
+function toExternalRoute(base, route) {
+  return route.startsWith("/root")
     ? route.substring("/root".length) || "/"
     : base + route;
-  window.history.pushState("", "", url);
+}
+
+function pushState(base, route) {
+  window.history.pushState("", "", toExternalRoute(base, route));
 }
 
 function adaptOutlet(base, route, outlet, tagName) {

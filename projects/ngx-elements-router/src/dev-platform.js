@@ -19,7 +19,7 @@ function registerRouting(base, tagName) {
   return {
     changeRoute(route) {
       pushState(base, route);
-      changeRoute(base, route, outlet, tagName);
+      adaptOutlet(base, route, outlet, tagName);
     },
   };
 }
@@ -32,7 +32,7 @@ function pushState(base, route) {
   }
 }
 
-function changeRoute(base, route, outlet, tagName) {
+function adaptOutlet(base, route, outlet, tagName) {
   if (route.startsWith("/root")) {
     if (outlet.hasChildNodes()) {
       const element = outlet.childNodes[0];
@@ -53,6 +53,6 @@ function addRoutingToElement(base, outlet, element) {
   element.addEventListener("routeChange", (event) => {
     const route = event.detail;
     pushState(base, route);
-    changeRoute(base, route, outlet, element);
+    adaptOutlet(base, route, outlet, element);
   });
 }

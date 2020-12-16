@@ -2,9 +2,13 @@
 
 ![License](https://img.shields.io/github/license/fboeller/ngx-elements-router) ![Build](https://img.shields.io/github/workflow/status/fboeller/ngx-elements-router/CI) ![Version](https://img.shields.io/npm/v/ngx-elements-router)
 
-The angular elements router is a libary for using the Angular Router within Angular Elements.
+The angular elements router is a library for using the Angular Router within Angular Elements.
 
-- **Lazy loading** — The bundle is loaded when the route of the micro frontend is activated.
+- **Router module usage** — Use the angular router module both in the platform and the micro frontend without interfering each other.
+
+- **Dev platform** — Includes a straight-forward dev platform capable of replacing the production platform for local development.
+
+- **Battle-tested** — This library is based on the efforts at [LeanIX](https://www.leanix.net/en/) where this approach is used to serve micro frontends to 100K users.
 
 - **Non-intrusive** — Use only the features you need, easy opt-out once Angular starts supporting the router in Angular Elements out of the box.
 

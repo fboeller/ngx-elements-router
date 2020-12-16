@@ -20,6 +20,20 @@ The angular elements router is a library for using the Angular Router within Ang
 $ npm install --save ngx-elements-router
 ```
 
+## Try it
+
+This repo includes an example platform and an example micro frontend.
+
+```
+$ git clone https://github.com/fboeller/ngx-elements-router.git
+$ cd ngx-elements-router
+$ npm install
+$ npm start example-micro-frontend
+```
+
+On start of the example micro frontend, a visit to `localhost:4200` shows the dev platform.
+If you click the buttons, you see how the route changes, independent from if the click originated in the platform or the micro frontend.
+
 ## Prerequisites
 
 You have an Angular application that acts as a [platform](./projects/example-platform) and an Angular application that acts as a [micro frontend](./projects/example-micro-frontend).

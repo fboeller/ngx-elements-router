@@ -28,11 +28,27 @@ This repo includes an example platform and an example micro frontend.
 $ git clone https://github.com/fboeller/ngx-elements-router.git
 $ cd ngx-elements-router
 $ npm install
+```
+
+### Dev platform with micro frontend
+
+```
 $ npm start example-micro-frontend
 ```
 
-On start of the example micro frontend, a visit to `localhost:4200` shows the dev platform.
+A visit to `localhost:4200` shows the dev platform.
 If you click the buttons, you see how the route changes, independent from if the click originated in the platform or the micro frontend.
+
+### Angular platform with micro frontend
+
+```
+$ npm run build example-micro-frontend
+$ npm install -g http-server
+$ http-server dist/example-micro-frontend --port 4201
+```
+
+A visit to `localhost:4200` shows the Angular platform.
+The bundle file `main.js` is served from `localhost:4201` without hot-reloading.
 
 ## Prerequisites
 

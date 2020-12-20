@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
+import { Router, RoutesRecognized } from '@angular/router';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 
@@ -49,10 +49,10 @@ export class EntryRoutingService {
   registerOutgoingRouting(outgoingRoute$: Subject<string>): Subscription {
     return this.router.events.subscribe((event) => {
       if (
-        event instanceof NavigationStart &&
+        event instanceof RoutesRecognized &&
         !this.router.getCurrentNavigation()?.extras.skipLocationChange
       ) {
-        outgoingRoute$.next(event.url);
+        outgoingRoute$.next(event.urlAfterRedirects);
       }
     });
   }

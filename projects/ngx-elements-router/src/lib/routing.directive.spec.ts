@@ -4,7 +4,6 @@ import { RoutingDirective } from './routing.directive';
 describe('RoutingDirective', () => {
   let directive: RoutingDirective;
   let navigateByUrlSpy: jest.SpyInstance;
-  let navigateSpy: jest.SpyInstance;
 
   beforeEach(() => {
     const router: Partial<Router> = {
@@ -15,7 +14,6 @@ describe('RoutingDirective', () => {
       parent: 'parent',
     };
     navigateByUrlSpy = jest.spyOn(router, 'navigateByUrl');
-    navigateSpy = jest.spyOn(router, 'navigate');
     directive = new RoutingDirective(
       null as any,
       router as any,
@@ -23,23 +21,18 @@ describe('RoutingDirective', () => {
     );
   });
 
-  it('navigates relative to the base href if the route is prefixed with /root', () => {
-    directive.navigateToUrl('/root/my-external-route');
-    expect(navigateByUrlSpy).toBeCalledWith('/my-external-route');
-  });
-
-  it('navigates to the root when called with /root', () => {
-    directive.navigateToUrl('/root');
-    expect(navigateByUrlSpy).toBeCalledWith('');
-  });
-
-  it('navigates relative to the activated route if the route is not prefixed with /root', () => {
+  it('navigates to the url', () => {
     directive.navigateToUrl('/a/b');
-    expect(navigateSpy).toBeCalledWith(['./a/b'], { relativeTo: 'parent' });
+    expect(navigateByUrlSpy).toBeCalledWith('/a/b');
   });
 
-  it('navigates to the activated route itself if the route is /', () => {
+  it('navigates to / if the route is /', () => {
     directive.navigateToUrl('/');
-    expect(navigateSpy).toBeCalledWith(['./'], { relativeTo: 'parent' });
+    expect(navigateByUrlSpy).toBeCalledWith('/');
+  });
+
+  it('does not navigate on relative urls', () => {
+    directive.navigateToUrl('./');
+    expect(navigateByUrlSpy).toHaveBeenCalledTimes(0);
   });
 });

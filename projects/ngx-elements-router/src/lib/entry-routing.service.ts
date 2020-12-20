@@ -55,8 +55,7 @@ export class EntryRoutingService {
     return this.router.events.subscribe((event) => {
       if (
         event instanceof RoutesRecognized &&
-        (!this.router.getCurrentNavigation()?.extras.state?.fromPlatform ||
-          isRedirect(event))
+        (!this.isFromPlatform() || isRedirect(event))
       ) {
         outgoingRoute$.next({
           url: event.urlAfterRedirects,
@@ -64,5 +63,9 @@ export class EntryRoutingService {
         });
       }
     });
+  }
+
+  isFromPlatform(): boolean {
+    return this.router.getCurrentNavigation()?.extras.state?.fromPlatform;
   }
 }

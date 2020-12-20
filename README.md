@@ -47,6 +47,10 @@ $ npm install -g http-server
 $ http-server dist/example-micro-frontend --port 4201
 ```
 
+```
+$ npm start example-platform
+```
+
 A visit to `localhost:4200` shows the Angular platform.
 The bundle file `main.js` is served from `localhost:4201` without hot-reloading.
 

@@ -46,7 +46,7 @@ export class EntryRoutingService {
   ): Subscription {
     return incomingRoute$.pipe(distinctUntilChanged()).subscribe((route) => {
       if (route) {
-        this.router.navigateByUrl(route, { skipLocationChange: true });
+        this.router.navigateByUrl(route, { state: { fromPlatform: true } });
       }
     });
   }
@@ -55,7 +55,7 @@ export class EntryRoutingService {
     return this.router.events.subscribe((event) => {
       if (
         event instanceof RoutesRecognized &&
-        (!this.router.getCurrentNavigation()?.extras.skipLocationChange ||
+        (!this.router.getCurrentNavigation()?.extras.state?.fromPlatform ||
           isRedirect(event))
       ) {
         outgoingRoute$.next({

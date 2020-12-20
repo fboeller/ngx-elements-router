@@ -50,7 +50,8 @@ export class EntryRoutingService {
     return this.router.events.subscribe((event) => {
       if (
         event instanceof RoutesRecognized &&
-        !this.router.getCurrentNavigation()?.extras.skipLocationChange
+        (!this.router.getCurrentNavigation()?.extras.skipLocationChange ||
+          event.url !== event.urlAfterRedirects)
       ) {
         outgoingRoute$.next(event.urlAfterRedirects);
       }

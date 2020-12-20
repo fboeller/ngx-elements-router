@@ -11,60 +11,48 @@ function registerRouting(base, tagName) {
   const outlet = document.getElementById("router-outlet");
   window.onpopstate = () => {
     const route = window.location.pathname;
-    adaptOutlet(base, toInternalRoute(base, route), outlet, tagName);
+    adaptOutlet(base, route, outlet, tagName);
   };
   const route = window.location.pathname;
   if (route.startsWith(base)) {
     const element = document.createElement(tagName);
     addRoutingToElement(base, outlet, element);
-    element.setAttribute("route", toInternalRoute(base, route));
+    element.setAttribute("route", route);
     outlet.appendChild(element);
   }
   return {
     changeRoute(route) {
-      pushState(base, route);
+      pushState(route);
       adaptOutlet(base, route, outlet, tagName);
     },
   };
 }
 
-function toInternalRoute(base, route) {
-  return route.startsWith(base)
-    ? route.substring(base.length)
-    : "/root" + route;
-}
-
-function toExternalRoute(base, route) {
-  return route.startsWith("/root")
-    ? route.substring("/root".length) || "/"
-    : base + route;
-}
-
-function pushState(base, route) {
-  window.history.pushState("", "", toExternalRoute(base, route));
+function pushState(route) {
+  window.history.pushState("", "", route);
 }
 
 function adaptOutlet(base, route, outlet, tagName) {
-  if (route.startsWith("/root")) {
-    if (outlet.hasChildNodes()) {
-      const element = outlet.childNodes[0];
-      element.setAttribute("route", "/");
-      outlet.removeChild(element);
-    }
-  } else {
+  if (route.startsWith(base)) {
     if (!outlet.hasChildNodes()) {
       const element = document.createElement(tagName);
       addRoutingToElement(base, outlet, element);
       outlet.appendChild(element);
     }
     outlet.childNodes[0].setAttribute("route", route);
+  } else {
+    if (outlet.hasChildNodes()) {
+      const element = outlet.childNodes[0];
+      element.setAttribute("route", "/");
+      outlet.removeChild(element);
+    }
   }
 }
 
 function addRoutingToElement(base, outlet, element) {
   element.addEventListener("routeChange", (event) => {
     const route = event.detail;
-    pushState(base, route);
+    pushState(route);
     adaptOutlet(base, route, outlet, element);
   });
 }

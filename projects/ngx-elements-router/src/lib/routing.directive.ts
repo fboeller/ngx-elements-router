@@ -9,9 +9,6 @@ import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
-const urlSegmentsToString = (segments: UrlSegment[]) =>
-  '/' + segments.map((segment) => segment.path).join('/');
-
 /**
  * Enables the routing feature on a custom element.
  * It passes the activated route into the custom element and listens to route changes of the custom element.
@@ -41,7 +38,10 @@ export class RoutingDirective implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.url
-      .pipe(map(urlSegmentsToString), takeUntil(this.destroyed$))
+      .pipe(
+        map(() => this.router.url),
+        takeUntil(this.destroyed$)
+      )
       .subscribe((url) => (this.element.nativeElement.route = url));
   }
 
@@ -55,12 +55,8 @@ export class RoutingDirective implements OnInit, OnDestroy {
   }
 
   navigateToUrl(url: string | undefined): void {
-    if (url && url.startsWith('/root')) {
-      this.router.navigateByUrl(url.substring('/root'.length));
-    } else if (url && url.startsWith('/')) {
-      this.router.navigate(['./' + url.substring('/'.length)], {
-        relativeTo: this.route.parent,
-      });
+    if (url && url.startsWith('/')) {
+      this.router.navigateByUrl(url);
     } else {
       console.warn(
         `The aerRouting retrieved a route change that does not start with a '/'.`

@@ -4,9 +4,17 @@ import { Injector, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { EntryComponent } from './entry.component';
 import { createCustomElement } from '@angular/elements';
+import { ChildPageComponent } from './child-page.component';
+import { MainPageComponent } from './main-page.component';
+import { MicroFrontendComponent } from './micro-frontend.component';
 
 @NgModule({
-  declarations: [EntryComponent],
+  declarations: [
+    EntryComponent,
+    ChildPageComponent,
+    MainPageComponent,
+    MicroFrontendComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
 })

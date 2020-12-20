@@ -11,14 +11,7 @@ import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'mf-angular-entry',
-  template: `
-    <h2>The micro frontend</h2>
-    <a routerLink="/root">Go to platform main page</a>
-    <a routerLink="/root/child">Go to platform child page</a>
-    <a routerLink="/">Go to micro frontend main page</a>
-    <a routerLink="/child">Go to micro frontend child page</a>
-    <router-outlet></router-outlet>
-  `,
+  template: `<router-outlet></router-outlet>`,
 })
 export class EntryComponent implements OnChanges, OnDestroy {
   private route$ = new Subject<string | undefined>();

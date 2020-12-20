@@ -186,17 +186,22 @@ export class AppModule {
 }
 ```
 
-### Define the /root route in the micro frontend
+### Define the routes in the micro frontend
 
-To resolve the ambiguity of '/' within the micro frontend, you can reserve `/root` to reference the root of the platform and `/` to reference the root of the micro frontend.
+The route structure in the micro frontend needs to be defined with the same structure as the platform.
+If the platform delegates all traffic at `/micro-frontend` to the micro frontend, then the micro frontend should define such a route.
+All other traffic needs to go to a route `**` such that the router module of the micro frontend does not discard it as undefined routes.
 This way, you can navigate to links outside of the micro frontend from within the micro frontend.
 
 ```typescript
 import { NoComponent } from "ngx-elements-router";
 
 const routes: Routes = [
-  { path: "root", children: [{ path: "**", component: NoComponent }] },
-  ...otherRoutes,
+  {
+    path: "micro-frontend",
+    children: microfrontendRoutes,
+  },
+  { path: "**", component: NoComponent },
 ];
 ```
 
@@ -252,10 +257,8 @@ Setup an `index.html` in the micro frontend app.
     <script src="scripts.js"></script>
   </head>
   <body>
-    <button onclick="router.changeRoute('/root')">
-      Go to platform main page
-    </button>
-    <button onclick="router.changeRoute('/')">
+    <button onclick="router.changeRoute('/')">Go to platform main page</button>
+    <button onclick="router.changeRoute('/micro-frontend')">
       Go to micro frontend main page
     </button>
     <div id="router-outlet"></div>

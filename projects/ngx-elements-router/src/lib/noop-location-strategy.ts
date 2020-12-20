@@ -14,8 +14,8 @@ import { Inject, Injectable, Optional } from '@angular/core';
  * ```
  * imports: [
  *   RouterModule.forRoot([
- *     { path: 'root', children: [{ path: '**', component: NoComponent }] },
- *     { path: 'other-route', component: SomeComponent }
+ *     { path: 'my-route', component: SomeComponent },
+ *     { path: '**', component: NoComponent }
  *   ])
  * ],
  * providers: [

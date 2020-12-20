@@ -4,11 +4,11 @@ import { RoutingDirective } from './routing.directive';
 describe('RoutingDirective', () => {
   let directive: RoutingDirective;
   let navigateByUrlSpy: jest.SpyInstance;
+  jest.spyOn(console, 'warn').mockImplementation(() => {});
 
   beforeEach(() => {
     const router: Partial<Router> = {
       navigateByUrl: () => Promise.resolve(true),
-      navigate: () => Promise.resolve(true),
     };
     const activatedRoute = {
       parent: 'parent',
@@ -22,17 +22,17 @@ describe('RoutingDirective', () => {
   });
 
   it('navigates to the url', () => {
-    directive.navigateToUrl('/a/b');
-    expect(navigateByUrlSpy).toBeCalledWith('/a/b');
+    directive.navigateToUrl({ url: '/a/b', replaceUrl: false });
+    expect(navigateByUrlSpy).toBeCalledWith('/a/b', { replaceUrl: false });
   });
 
   it('navigates to / if the route is /', () => {
-    directive.navigateToUrl('/');
-    expect(navigateByUrlSpy).toBeCalledWith('/');
+    directive.navigateToUrl({ url: '/', replaceUrl: false });
+    expect(navigateByUrlSpy).toBeCalledWith('/', { replaceUrl: false });
   });
 
   it('does not navigate on relative urls', () => {
-    directive.navigateToUrl('./');
+    directive.navigateToUrl({ url: './', replaceUrl: false });
     expect(navigateByUrlSpy).toHaveBeenCalledTimes(0);
   });
 });

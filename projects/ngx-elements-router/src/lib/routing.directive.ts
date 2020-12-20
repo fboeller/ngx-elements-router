@@ -5,9 +5,10 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
+import { RouterEvent } from './router-event.type';
 
 /**
  * Enables the routing feature on a custom element.
@@ -50,16 +51,19 @@ export class RoutingDirective implements OnInit, OnDestroy {
   }
 
   @HostListener('routeChange', ['$event'])
-  handleRouteChange(event: { detail?: string }): void {
+  handleRouteChange(event: { detail?: RouterEvent }): void {
     this.navigateToUrl(event?.detail);
   }
 
-  navigateToUrl(url: string | undefined): void {
-    if (url && url.startsWith('/')) {
-      this.router.navigateByUrl(url);
+  navigateToUrl(event: RouterEvent | undefined): void {
+    if (event?.url && event.url.startsWith('/')) {
+      this.router.navigateByUrl(event.url, {
+        replaceUrl: event.replaceUrl || false,
+      });
     } else {
       console.warn(
-        `The aerRouting retrieved a route change that does not start with a '/'.`
+        `The aerRouting directive received an invalid router event.`,
+        event
       );
     }
   }

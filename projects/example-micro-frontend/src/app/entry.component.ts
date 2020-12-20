@@ -6,6 +6,7 @@ import {
   OnDestroy,
   Output,
 } from '@angular/core';
+import { RouterEvent } from '../../../ngx-elements-router/src/lib/router-event.type';
 import { EntryRoutingService } from '../../../ngx-elements-router/src/lib/entry-routing.service';
 import { Subject, Subscription } from 'rxjs';
 
@@ -16,7 +17,7 @@ import { Subject, Subscription } from 'rxjs';
 export class EntryComponent implements OnChanges, OnDestroy {
   private route$ = new Subject<string | undefined>();
   @Input() route?: string;
-  @Output() routeChange = new EventEmitter<string>();
+  @Output() routeChange = new EventEmitter<RouterEvent>();
 
   private readonly subscription: Subscription;
 

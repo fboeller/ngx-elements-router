@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
     <a routerLink="/child">/child</a>
     <a routerLink="./">/micro-frontend</a>
     <a routerLink="./child">/micro-frontend/child</a>
+    <a routerLink="./redirect">/micro-frontend/redirect</a>
     <router-outlet></router-outlet>
   `,
 })

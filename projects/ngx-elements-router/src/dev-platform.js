@@ -22,14 +22,18 @@ function registerRouting(base, tagName) {
   }
   return {
     changeRoute(route) {
-      pushState(route);
+      changeBrowserUrl(route, false);
       adaptOutlet(base, route, outlet, tagName);
     },
   };
 }
 
-function pushState(route) {
-  window.history.pushState("", "", route);
+function changeBrowserUrl(url, replaceUrl) {
+  if (replaceUrl) {
+    window.history.replaceState("", "", url);
+  } else {
+    window.history.pushState("", "", url);
+  }
 }
 
 function adaptOutlet(base, route, outlet, tagName) {
@@ -52,7 +56,7 @@ function adaptOutlet(base, route, outlet, tagName) {
 function addRoutingToElement(base, outlet, element) {
   element.addEventListener("routeChange", (event) => {
     const route = event.detail;
-    pushState(route);
-    adaptOutlet(base, route, outlet, element);
+    changeBrowserUrl(route.url, route.replaceUrl);
+    adaptOutlet(base, route.url, outlet, element);
   });
 }

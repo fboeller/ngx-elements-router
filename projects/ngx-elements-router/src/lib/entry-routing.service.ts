@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
+import { Router, RoutesRecognized } from '@angular/router';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
+import { RouterEvent } from './router-event.type';
+
+function isRedirect(event: RoutesRecognized): boolean {
+  return event.url !== event.urlAfterRedirects;
+}
 
 /**
  * Registers the routing feature on the entry component of a micro frontend.
@@ -28,7 +33,7 @@ export class EntryRoutingService {
   constructor(private router: Router) {}
 
   registerRouting(
-    outgoingRoute$: Subject<string>,
+    outgoingRoute$: Subject<RouterEvent>,
     incomingRoute$: Observable<string | undefined>
   ): Subscription {
     const inSubscription = this.registerIncomingRouting(incomingRoute$);
@@ -46,13 +51,17 @@ export class EntryRoutingService {
     });
   }
 
-  registerOutgoingRouting(outgoingRoute$: Subject<string>): Subscription {
+  registerOutgoingRouting(outgoingRoute$: Subject<RouterEvent>): Subscription {
     return this.router.events.subscribe((event) => {
       if (
-        event instanceof NavigationStart &&
-        !this.router.getCurrentNavigation()?.extras.skipLocationChange
+        event instanceof RoutesRecognized &&
+        (!this.router.getCurrentNavigation()?.extras.skipLocationChange ||
+          isRedirect(event))
       ) {
-        outgoingRoute$.next(event.url);
+        outgoingRoute$.next({
+          url: event.urlAfterRedirects,
+          replaceUrl: isRedirect(event),
+        });
       }
     });
   }

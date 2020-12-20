@@ -21,13 +21,17 @@ const routes: Routes = [
         path: 'child',
         component: ChildPageComponent,
       },
+      {
+        path: 'redirect',
+        redirectTo: 'child',
+      },
     ],
   },
   { path: '**', component: NoComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
   providers: [{ provide: LocationStrategy, useClass: NoopLocationStrategy }],
   exports: [RouterModule],
 })

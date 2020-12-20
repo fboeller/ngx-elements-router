@@ -5,10 +5,12 @@ import { NoopLocationStrategy } from '../../../ngx-elements-router/src/lib/noop-
 import { NoComponent } from '../../../ngx-elements-router/src/lib/no.component';
 import { ChildPageComponent } from './child-page.component';
 import { MainPageComponent } from './main-page.component';
+import { MicroFrontendComponent } from './micro-frontend.component';
 
 const routes: Routes = [
   {
     path: 'micro-frontend',
+    component: MicroFrontendComponent,
     children: [
       {
         path: '',

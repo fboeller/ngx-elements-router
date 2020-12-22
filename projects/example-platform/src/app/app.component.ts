@@ -4,10 +4,10 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <h1>The platform</h1>
-    <a routerLink="/">Go to platform main page</a>
-    <a routerLink="/child">Go to platform child page</a>
-    <a routerLink="/micro-frontend">Go to micro frontend main page</a>
-    <a routerLink="/micro-frontend/child">Go to micro frontend child page</a>
+    <a routerLink="/">/</a>
+    <a routerLink="/child">/child</a>
+    <a routerLink="/micro-frontend">/micro-frontend</a>
+    <a routerLink="/micro-frontend/child">/micro-frontend/child</a>
     <router-outlet></router-outlet>
   `,
 })

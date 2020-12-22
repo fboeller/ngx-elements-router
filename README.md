@@ -66,6 +66,8 @@ A build of the micro frontend results in a single build that registers custom el
 To be able to reference your custom element in the routes, you need to create a host component.
 You can use the `aerRouting` on the custom element to pass route changes to the micro frontend and to allow the micro frontend to pass route changes to the platform.
 
+[platform/micro-frontend-host.component.ts](./projects/example-platform/src/app/micro-frontend-host.component.ts)
+
 ```typescript
 import { Component } from "@angular/core";
 
@@ -82,6 +84,8 @@ To lazy load your custom element, you need to create a host module in the platfo
 Import `AngularElementsRouterModule` to be able to use the `aerRouting` directive.
 Use the schema `CUSTOM_ELEMENTS_SCHEMA` to make Angular accept the custom element in the host component.
 Use the path `**` to pass all sub paths to the custom element.
+
+[platform/micro-frontend-host.module.ts](./projects/example-platform/src/app/micro-frontend-host.module.ts)
 
 ```typescript
 import { AngularElementsRouterModule } from "ngx-elements-router";
@@ -107,6 +111,8 @@ export class MicroFrontendHostModule {}
 Choose a route under which your micro frontend should be loaded.
 Use the `LoadBundleGuard` to load the bundle of your micro frontend on the first activation of the route.
 
+[platform/app-routing.module.ts](./projects/example-platform/src/app/app-routing.module.ts)
+
 ```typescript
 import { LoadBundleGuard } from "ngx-elements-router";
 
@@ -129,6 +135,8 @@ const routes: Routes = [
 
 Use the `EntryRoutingService` in the Angular component representing the custom element.
 This way, route changes are passed to the Angular router in the micro frontend and in the other direction to the platform.
+
+[micro-frontend/entry-component.ts](./projects/example-micro-frontend/src/app/entry-component.ts)
 
 ```typescript
 import { EntryRoutingService } from 'ngx-elements-router';
@@ -165,6 +173,8 @@ export class EntryComponent implements OnChanges, OnDestroy {
 
 The module in your micro frontend needs to define the custom element in the browser on bootstrap of the module.
 
+[micro-frontend/app-module.ts](./projects/example-micro-frontend/src/app/app.module.ts)
+
 ```typescript
 import { EntryComponent } from "./entry.component";
 import { createCustomElement } from "@angular/elements";
@@ -193,6 +203,8 @@ If the platform delegates all traffic at `/micro-frontend` to the micro frontend
 All other traffic needs to go to a route `**` such that the router module of the micro frontend does not discard it as undefined routes.
 This way, you can navigate to links outside of the micro frontend from within the micro frontend.
 
+[micro-frontend/app-routing.module.ts](./projects/example-micro-frontend/src/app/app-routing.module.ts)
+
 ```typescript
 import { NoComponent } from "ngx-elements-router";
 
@@ -209,6 +221,8 @@ const routes: Routes = [
 
 By default, the Angular router within the micro frontend tries to update the browser url.
 Use the `NoopLocationStrategy` to prevent this, such that the platform has the only access.
+
+[micro-frontend/app-routing.module.ts](./projects/example-micro-frontend/src/app/app-routing.module.ts)
 
 ```typescript
 import { NoopLocationStrategy } from "ngx-elements-router";
@@ -228,6 +242,8 @@ This dev platform can be used both locally and also be deployed and used togethe
 
 To use it, include the `dev-platform.js` in the scripts of your micro frontend in the `angular.json`.
 
+[angular.json](./angular.json)
+
 ```json
 {
 "build": {
@@ -244,6 +260,8 @@ To use it, include the `dev-platform.js` in the scripts of your micro frontend i
 ```
 
 Setup an `index.html` in the micro frontend app.
+
+[micro-frontend/index.html](./projects/example-micro-frontend/src/index.html)
 
 ```html
 <!DOCTYPE html>

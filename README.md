@@ -61,6 +61,14 @@ A build of the micro frontend results in a single build that registers custom el
 
 ## Usage
 
+The general idea of this library is the delegation of the modification of the browser url such that only the platform application modifies it.
+This is achieved by preventing Angular in the micro frontend application from accessing the browser url and instead using inputs and outputs
+of the web component to pass route changes from and to the router module of the platform.
+The micro frontend routes and the platform routes are both defined starting after the base href but the micro frontend routes typically define
+a single top-level route like `/micro-frontend` and only receive routes starting with that route.
+In the component mounted at `/micro-frontend`, it is then possible to use an absolute path `/abc` to refer to a route external to the micro frontend and
+a relative path `./abc` to refer to a route relative to the route `/micro-frontend`.
+
 ### Create a host component
 
 To be able to reference your custom element in the routes, you need to create a host component.

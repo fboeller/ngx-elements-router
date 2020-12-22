@@ -196,6 +196,28 @@ export class AppModule {
 }
 ```
 
+### Create a component that sits at your micro frontend route
+
+The priorly created `EntryComponent` gets the full path starting after the base href.
+In its router outlet, a `MicroFrontendComponent` is mounted if the full path is a path to the micro frontend.
+Inside this component, you can use an absolute path `/abc` to refer to a route outside of the micro frontend.
+You can use a relative path `./abc` to refer to a route relative to the micro frontend route.
+It can itself have a router outlet to mount different components depending on the subpath of the micro frontend.
+
+[micro-frontend/micro-frontend.component.ts](./projects/example-micro-frontend/src/app/micro-frontend.component.ts)
+
+```typescript
+@Component({
+  selector: "mf-micro-frontend",
+  template: `
+    <a routerLink="/child">/child</a>
+    <a routerLink="./child">/micro-frontend/child</a>
+    <router-outlet></router-outlet>
+  `,
+})
+export class MicroFrontendComponent {}
+```
+
 ### Define the routes in the micro frontend
 
 The route structure in the micro frontend needs to be defined with the same structure as the platform.
@@ -211,6 +233,7 @@ import { NoComponent } from "ngx-elements-router";
 const routes: Routes = [
   {
     path: "micro-frontend",
+    component: MicroFrontendComponent,
     children: microfrontendRoutes,
   },
   { path: "**", component: NoComponent },

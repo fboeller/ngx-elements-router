@@ -317,3 +317,10 @@ Setup an `index.html` in the micro frontend app.
   </body>
 </html>
 ```
+
+## Limitations
+
+Note that this library is a workaround to make the most common use cases of the Angular router accessible in a micro frontend.
+It has not been tried so far, if this approach works with more advanced features like named router outlets or router child modules.
+Various navigation options like `skipLocationChange` might not be propagated properly.
+Feel free to open issues or contribute pull requests for functionality that you think should be supported!

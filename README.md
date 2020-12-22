@@ -74,7 +74,7 @@ a relative path `./abc` to refer to a route relative to the route `/micro-fronte
 To be able to reference your custom element in the routes, you need to create a host component.
 You can use the `aerRouting` on the custom element to pass route changes to the micro frontend and to allow the micro frontend to pass route changes to the platform.
 
-[platform/micro-frontend-host.component.ts](./projects/example-platform/src/app/micro-frontend-host.component.ts)
+[platform/micro-frontend-host.component.ts](./projects/example-platform/src/app/micro-frontend-host/micro-frontend-host.component.ts)
 
 ```typescript
 import { Component } from "@angular/core";
@@ -93,7 +93,7 @@ Import `AngularElementsRouterModule` to be able to use the `aerRouting` directiv
 Use the schema `CUSTOM_ELEMENTS_SCHEMA` to make Angular accept the custom element in the host component.
 Use the path `**` to pass all sub paths to the custom element.
 
-[platform/micro-frontend-host.module.ts](./projects/example-platform/src/app/micro-frontend-host.module.ts)
+[platform/micro-frontend-host.module.ts](./projects/example-platform/src/app/micro-frontend-host/micro-frontend-host.module.ts)
 
 ```typescript
 import { AngularElementsRouterModule } from "ngx-elements-router";
@@ -144,7 +144,7 @@ const routes: Routes = [
 Use the `EntryRoutingService` in the Angular component representing the custom element.
 This way, route changes are passed to the Angular router in the micro frontend and in the other direction to the platform.
 
-[micro-frontend/entry-component.ts](./projects/example-micro-frontend/src/app/entry-component.ts)
+[micro-frontend/entry-component.ts](./projects/example-micro-frontend/src/app/entry.component.ts)
 
 ```typescript
 import { EntryRoutingService } from 'ngx-elements-router';

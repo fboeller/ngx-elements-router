@@ -1,6 +1,6 @@
 {
   "name": "ngx-elements-router",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A libary to enable the usage of the router module within Angular projects defining custom elements",
   "author": "Fabian Böller",
   "license": "MIT",

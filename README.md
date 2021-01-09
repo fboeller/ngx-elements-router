@@ -318,6 +318,58 @@ Setup an `index.html` in the micro frontend app.
 </html>
 ```
 
+### Pass Zone.js events
+
+Zone.js registers itself globally on the window object.
+If the platform and the micro frontend are both Angular projects relying on Zone.js, then they concurrently access it and interfere with each others change detection cycles.
+To mitigate that, you can pass Zone.js microtask empty events to the micro frontend. These events are the trigger of a change detection cycle.
+
+You can use the `EntryZoneService` in the Angular component representing the custom element.
+This way, Zone.js micro task empty events are passed to the micro frontend and a change detection cycle is triggered.
+
+[micro-frontend/entry-component.ts](./projects/example-micro-frontend/src/app/entry.component.ts)
+
+```typescript
+import { EntryZoneService } from "ngx-elements-router";
+
+@Component({
+  selector: "mf-angular-entry",
+  template: `<router-outlet></router-outlet>`,
+})
+export class ExampleComponent implements OnChanges, OnDestroy {
+  @Input() microtaskEmpty$?: Observable<void>;
+  microtaskEmpty$$ = new Subject<Observable<void>>();
+
+  constructor(private entryZoneService: EntryZoneService) {
+    this.subscription = this.entryZoneService.registerZone(
+      this.microtaskEmpty$$
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  ngOnChanges() {
+    this.microtaskEmpty$$.next(this.microtaskEmpty$);
+  }
+}
+```
+
+Use the `aerRouting` on the custom element to pass micro task empty events to the micro frontend.
+
+[platform/micro-frontend-host.component.ts](./projects/example-platform/src/app/micro-frontend-host/micro-frontend-host.component.ts)
+
+```typescript
+import { Component } from "@angular/core";
+
+@Component({
+  selector: "app-host",
+  template: `<mf-entry aerZone></mf-entry>`,
+})
+export class MicroFrontendHostComponent {}
+```
+
 ## Limitations
 
 Note that this library is a workaround to make the most common use cases of the Angular router accessible in a micro frontend.

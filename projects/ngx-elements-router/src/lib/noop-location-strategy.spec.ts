@@ -23,4 +23,20 @@ describe('NoopLocationStrategy', () => {
       new Error(`Cannot read property 'getBaseHrefFromDOM' of null`)
     );
   });
+
+  it.each([
+    ['/base', '/internal', '/base/internal'],
+    ['/base/', '/internal', '/base/internal'],
+    ['/base/', 'internal', '/base/internal'],
+    ['/base', 'internal', '/base/internal'],
+  ])(
+    'should prepare a correct external url from the base href %s and the internal url %s',
+    (baseHref, internal, expected) => {
+      const strategy = new NoopLocationStrategy(
+        (undefined as unknown) as PlatformLocation,
+        baseHref
+      );
+      expect(strategy.prepareExternalUrl(internal)).toEqual(expected);
+    }
+  );
 });

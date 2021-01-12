@@ -51,7 +51,13 @@ export class NoopLocationStrategy extends LocationStrategy {
   }
 
   prepareExternalUrl(internal: string): string {
-    return internal;
+    if (this.baseHref.endsWith('/') && internal.startsWith('/')) {
+      return this.baseHref.substring(0, this.baseHref.length - 1) + internal;
+    } else if (this.baseHref.endsWith('/') || internal.startsWith('/')) {
+      return this.baseHref + internal;
+    } else {
+      return `${this.baseHref}/${internal}`;
+    }
   }
 
   pushState(

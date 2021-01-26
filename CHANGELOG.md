@@ -7,13 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.3] - 2020-01-26
+## [0.1.2] - 2020-01-26
 
 ### Added
 
 - The package is now usable with Angular peer dependencies >=10.2.0 (before ~10.2.0). It is now build with 11.1.0 and is tested both with 10.2.0 and 11.1.0.
-
-## [0.1.2] - 2020-01-12
 
 ### Fixed
 

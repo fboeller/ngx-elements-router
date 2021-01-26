@@ -29,9 +29,9 @@
     "contents": "dist/ngx-elements-router"
   },
   "peerDependencies": {
-    "@angular/common": "^10.2.0",
-    "@angular/core": "^10.2.0",
-    "@angular/router": "^10.2.0"
+    "@angular/common": ">=10.2.0",
+    "@angular/core": ">=10.2.0",
+    "@angular/router": ">=10.2.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"

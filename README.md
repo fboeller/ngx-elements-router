@@ -139,6 +139,14 @@ const routes: Routes = [
 ];
 ```
 
+---
+
+**NOTE**
+
+Since Angular 11, your bundle name might be `main-es2015.js`.
+
+---
+
 ### Register routing in the micro frontend
 
 Use the `EntryRoutingService` in the Angular component representing the custom element.

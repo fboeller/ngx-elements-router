@@ -66,6 +66,6 @@ export class EntryRoutingService {
   }
 
   isFromPlatform(): boolean {
-    return this.router.getCurrentNavigation()?.extras.state?.fromPlatform;
+    return this.router.getCurrentNavigation()?.extras?.state?.fromPlatform;
   }
 }

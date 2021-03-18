@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.2] - 2020-01-26
+## [0.1.3] - 2021-03-18
+
+### Fixed
+
+- Don't throw error if `extras` is undefined on current navigation [#14](https://github.com/fboeller/ngx-elements-router/issues/14). (Thanks to @kelvindart-certua and @vickieallen-certua)
+
+## [0.1.2] - 2021-01-26
 
 ### Added
 

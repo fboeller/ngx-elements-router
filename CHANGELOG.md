@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+Upgraded to Angular 13:
+- replaced tslint with eslint
+- resolves `Encourage the library authors to publish an Ivy distribution.` message from angular CLI
+
 ## [0.1.3] - 2021-03-18
 
 ### Fixed

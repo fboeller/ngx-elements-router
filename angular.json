@@ -22,13 +22,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/ngx-elements-router/tsconfig.lib.json",
-              "projects/ngx-elements-router/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/ngx-elements-router/**/*.ts",
+              "projects/ngx-elements-router/**/*.html"
+            ]
           }
         }
       }
@@ -54,8 +53,12 @@
               "projects/example-micro-frontend/src/favicon.ico",
               "projects/example-micro-frontend/src/assets"
             ],
-            "styles": ["projects/example-micro-frontend/src/styles.css"],
-            "scripts": ["projects/ngx-elements-router/src/dev-platform.js"]
+            "styles": [
+              "projects/example-micro-frontend/src/styles.css"
+            ],
+            "scripts": [
+              "projects/ngx-elements-router/src/dev-platform.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -105,10 +108,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": ["projects/example-micro-frontend/tsconfig.app.json"],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/example-micro-frontend/**/*.ts",
+              "projects/example-micro-frontend/**/*.html"
+            ]
           }
         }
       }
@@ -131,7 +136,9 @@
               "projects/example-platform/src/favicon.ico",
               "projects/example-platform/src/assets"
             ],
-            "styles": ["projects/example-platform/src/styles.css"],
+            "styles": [
+              "projects/example-platform/src/styles.css"
+            ],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -189,10 +196,12 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": ["projects/example-platform/tsconfig.app.json"],
-            "exclude": ["**/node_modules/**"]
+            "lintFilePatterns": [
+              "projects/example-platform/**/*.ts",
+              "projects/example-platform/**/*.html"
+            ]
           }
         }
       }

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { Injector, NgModule } from '@angular/core';
+import { DoBootstrap, Injector, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { EntryComponent } from './entry.component';
@@ -18,7 +18,7 @@ import { MicroFrontendComponent } from './micro-frontend.component';
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
 })
-export class AppModule {
+export class AppModule implements DoBootstrap {
   constructor(private injector: Injector) {}
 
   ngDoBootstrap(): void {

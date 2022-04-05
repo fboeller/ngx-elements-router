@@ -16,12 +16,13 @@ import { EntryZoneService } from 'projects/ngx-elements-router/src/lib/entry-zon
   template: `<router-outlet></router-outlet>`,
 })
 export class EntryComponent implements OnChanges, OnDestroy {
-  private route$ = new Subject<string | undefined>();
   @Input() route?: string;
   @Output() routeChange = new EventEmitter<RouterEvent>();
 
   @Input() microtaskEmpty$?: Observable<void>;
   microtaskEmpty$$ = new Subject<Observable<void>>();
+
+  private route$ = new Subject<string | undefined>();
 
   private readonly subscription: Subscription;
 

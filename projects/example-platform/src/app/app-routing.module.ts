@@ -18,7 +18,7 @@ const routes: Routes = [
     path: 'micro-frontend',
     canActivate: [LoadBundleGuard],
     data: {
-      bundleUrl: 'http://localhost:4201/main-es2015.js',
+      bundleUrl: 'http://localhost:4201/main.js',
     },
     loadChildren: () =>
       import('./micro-frontend-host/micro-frontend-host.module').then(

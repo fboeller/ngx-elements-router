@@ -9,7 +9,7 @@
     "prettier": "npx prettier --write .",
     "prettier-check": "npx prettier --check .",
     "check": "npm run lint && npm run test && npm run prettier-check",
-    "build-lib": "ng build ngx-elements-router --prod && cp ./README.md ./dist/ngx-elements-router/ && cp ./LICENSE ./dist/ngx-elements-router/",
+    "build-lib": "ng build ngx-elements-router --configuration production && cp ./README.md ./dist/ngx-elements-router/ && cp ./LICENSE ./dist/ngx-elements-router/",
     "npm-pack": "cd dist/ngx-elements-router && npm pack && cd ../..",
     "package": "npm run build-lib && npm run npm-pack"
   },
@@ -46,35 +46,35 @@
     }
   },
   "dependencies": {
-    "@angular/common": "~11.1.0",
-    "@angular/compiler": "~11.1.0",
-    "@angular/core": "~11.1.0",
-    "@angular/platform-browser": "~11.1.0",
-    "@angular/platform-browser-dynamic": "~11.1.0",
-    "@angular/router": "~11.1.0",
+    "@angular/common": "~12.2.16",
+    "@angular/compiler": "~12.2.16",
+    "@angular/core": "~12.2.16",
+    "@angular/platform-browser": "~12.2.16",
+    "@angular/platform-browser-dynamic": "~12.2.16",
+    "@angular/router": "~12.2.16",
     "rxjs": "~6.6.0",
-    "tslib": "^2.0.0",
-    "zone.js": "~0.10.2"
+    "tslib": "^2.3.1",
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-builders/jest": "^10.0.1",
-    "@angular-devkit/build-angular": "~0.1101.1",
-    "@angular/cli": "~11.1.1",
-    "@angular/compiler-cli": "~11.1.0",
-    "@angular/elements": "^11.1.0",
+    "@angular-devkit/build-angular": "~12.2.17",
+    "@angular/cli": "~12.2.17",
+    "@angular/compiler-cli": "~12.2.16",
+    "@angular/elements": "^12.2.16",
     "@babel/core": "^7.12.3",
     "@types/jest": "^26.0.15",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
     "husky": "^4.3.0",
     "jest": "^26.6.3",
-    "ng-packagr": "^11.1.2",
-    "ngx-build-plus": "^11.0.0",
+    "ng-packagr": "^12.2.7",
+    "ngx-build-plus": "^12.2.0",
     "prettier": "^2.1.2",
     "protractor": "~7.0.0",
     "ts-jest": "^26.4.4",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.0.2"
+    "typescript": "~4.3.5"
   }
 }

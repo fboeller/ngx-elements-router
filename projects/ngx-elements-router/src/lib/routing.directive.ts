@@ -3,7 +3,7 @@ import {
   ElementRef,
   HostListener,
   OnDestroy,
-  OnInit,
+  OnInit
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -37,6 +37,11 @@ export class RoutingDirective implements OnInit, OnDestroy {
     private route: ActivatedRoute
   ) {}
 
+  @HostListener('routeChange', ['$event'])
+  handleRouteChange(event: { detail?: RouterEvent }): void {
+    this.navigateToUrl(event?.detail);
+  }
+
   ngOnInit(): void {
     this.route.url
       .pipe(
@@ -48,11 +53,6 @@ export class RoutingDirective implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.destroyed$.next();
-  }
-
-  @HostListener('routeChange', ['$event'])
-  handleRouteChange(event: { detail?: RouterEvent }): void {
-    this.navigateToUrl(event?.detail);
   }
 
   navigateToUrl(event: RouterEvent | undefined): void {

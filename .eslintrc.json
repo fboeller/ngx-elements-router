@@ -19,7 +19,9 @@
         "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
-      "rules": {}
+      "rules": {
+        "prefer-arrow/prefer-arrow-functions": "off"
+      }
     },
     {
       "files": [

@@ -18,9 +18,15 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-
+      
+      - name: Get Node.js version
+        id: nodejs
+        run: echo ::set-output name=nodeVersion::$(cat .node-version)
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v1
+        with:
+          node-version: ${{ steps.nodejs.outputs.nodeVersion }}
 
       - name: Install npm packages
         run: npm install

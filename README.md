@@ -1,3 +1,9 @@
+# Deprecated
+
+Follow [these tutorial steps](https://www.youtube.com/watch?v=ee17YczpCpU) rather than using this library. 
+Due to unresolvable Ivy and AOT issues, this library does not support Angular 14 and beyond. 
+Following the tutorial steps, you can setup routing within your micro frontend without the need of a library.
+
 # Angular Elements Router
 
 ![License](https://img.shields.io/github/license/fboeller/ngx-elements-router) ![Build](https://img.shields.io/github/workflow/status/fboeller/ngx-elements-router/CI) ![Version](https://img.shields.io/npm/v/ngx-elements-router)
